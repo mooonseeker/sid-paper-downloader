@@ -18,13 +18,15 @@ uv run sid-paper-downloader parse 2026-Symposium-Program.pdf --out output/manife
 uv run sid-paper-downloader download output/manifest.csv --out downloads --id 1-1 --id P-183 --force
 ```
 
-3. Download all PDFs:
+3. Start the manual download control UI:
 
 ```powershell
-uv run sid-paper-downloader download output/manifest.csv --out downloads
+uv run sid-paper-downloader serve --manifest output/manifest.csv --downloads downloads
 ```
 
-Limit or filter a larger run:
+Open the printed local URL in a browser. Use the page to search, select, start, stop, verify, and export the library.
+
+CLI downloads are still available for small targeted runs:
 
 ```powershell
 uv run sid-paper-downloader download output/manifest.csv --out downloads --type oral --limit 10

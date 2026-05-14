@@ -25,7 +25,8 @@ def export_library(rows: list[ManifestRow], downloads_dir: Path, output_file: Pa
 def _row_to_library_item(row: ManifestRow, downloads_dir: Path) -> dict[str, object]:
     local_path = _local_pdf_path(row)
     absolute_path = downloads_dir / local_path
-    downloaded = absolute_path.exists() and absolute_path.stat().st_size > 0
+    effective_status = _effective_status(row, absolute_path)
+    downloaded = effective_status == "downloaded"
     return {
         "paper_id": row.paper_id,
         "raw_id": row.raw_id,
@@ -34,6 +35,8 @@ def _row_to_library_item(row: ManifestRow, downloads_dir: Path) -> dict[str, obj
         "page": row.page,
         "remote_url": row.url,
         "local_path": local_path.as_posix(),
+        "status": effective_status,
+        "error": row.error,
         "downloaded": downloaded,
         "size_bytes": absolute_path.stat().st_size if downloaded else 0,
     }
@@ -42,6 +45,14 @@ def _row_to_library_item(row: ManifestRow, downloads_dir: Path) -> dict[str, obj
 def _local_pdf_path(row: ManifestRow) -> Path:
     subdir = "posters" if row.paper_id.startswith("P-") else "papers"
     return Path(subdir) / f"{row.paper_id}.pdf"
+
+
+def _effective_status(row: ManifestRow, absolute_path: Path) -> str:
+    if absolute_path.exists() and absolute_path.stat().st_size > 0:
+        return "downloaded"
+    if row.status == "missing":
+        return "missing"
+    return "untried"
 
 
 def _render_html(payload: dict[str, object]) -> str:
@@ -86,6 +97,7 @@ def _render_html(payload: dict[str, object]) -> str:
         <span>Status</span>
         <select id="statusFilter">
           <option value="all">All</option>
+          <option value="untried">Untried</option>
           <option value="downloaded">Downloaded</option>
           <option value="missing">Missing</option>
         </select>
@@ -105,6 +117,7 @@ def _render_html(payload: dict[str, object]) -> str:
       <div><strong id="statVisible">0</strong><span>Visible</span></div>
       <div><strong id="statDownloaded">0</strong><span>Downloaded</span></div>
       <div><strong id="statMissing">0</strong><span>Missing</span></div>
+      <div><strong id="statUntried">0</strong><span>Untried</span></div>
       <div><strong id="statOral">0</strong><span>Oral</span></div>
       <div><strong id="statPoster">0</strong><span>Poster</span></div>
     </section>
@@ -151,6 +164,8 @@ def _css() -> str:
   --ok-text: #137047;
   --miss-bg: #fff3df;
   --miss-text: #9a4b00;
+  --untried-bg: #eef2f7;
+  --untried-text: #475467;
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
@@ -249,7 +264,7 @@ label span {
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 10px;
   margin-bottom: 14px;
 }
@@ -345,6 +360,11 @@ td.pdf {
   color: var(--miss-text);
 }
 
+.badge.untried {
+  background: var(--untried-bg);
+  color: var(--untried-text);
+}
+
 a.pdfLink {
   color: var(--accent-dark);
   font-weight: 700;
@@ -407,6 +427,7 @@ const nodes = {
   visible: document.getElementById("statVisible"),
   downloaded: document.getElementById("statDownloaded"),
   missing: document.getElementById("statMissing"),
+  untried: document.getElementById("statUntried"),
   oral: document.getElementById("statOral"),
   poster: document.getElementById("statPoster"),
 };
@@ -466,8 +487,7 @@ function filteredItems() {
       : item.paper_id.toLowerCase().includes(query) || item.title.toLowerCase().includes(query));
     const matchesType = type === "all" || item.type === type;
     const matchesStatus = status === "all"
-      || (status === "downloaded" && item.downloaded)
-      || (status === "missing" && !item.downloaded);
+      || item.status === status;
     return matchesQuery && matchesType && matchesStatus;
   });
 
@@ -481,14 +501,16 @@ function filteredItems() {
 function render() {
   const visible = filteredItems();
   const totalDownloaded = items.filter((item) => item.downloaded).length;
-  const totalMissing = items.length - totalDownloaded;
+  const totalMissing = items.filter((item) => item.status === "missing").length;
+  const totalUntried = items.filter((item) => item.status === "untried").length;
   const totalOral = items.filter((item) => item.type === "oral").length;
   const totalPoster = items.filter((item) => item.type === "poster").length;
 
-  nodes.summary.textContent = `${items.length} entries · ${totalDownloaded} downloaded · ${totalMissing} missing`;
+  nodes.summary.textContent = `${items.length} entries · ${totalDownloaded} downloaded · ${totalMissing} missing · ${totalUntried} untried`;
   nodes.visible.textContent = String(visible.length);
   nodes.downloaded.textContent = String(totalDownloaded);
   nodes.missing.textContent = String(totalMissing);
+  nodes.untried.textContent = String(totalUntried);
   nodes.oral.textContent = String(totalOral);
   nodes.poster.textContent = String(totalPoster);
 
@@ -498,9 +520,11 @@ function render() {
   }
 
   nodes.rows.innerHTML = visible.map((item) => {
-    const status = item.downloaded
+    const status = item.status === "downloaded"
       ? `<span class="badge ok">Downloaded</span>`
-      : `<span class="badge missing">Missing</span>`;
+      : item.status === "missing"
+        ? `<span class="badge missing">Missing</span>`
+        : `<span class="badge untried">Untried</span>`;
     const pdf = item.downloaded
       ? `<a class="pdfLink" href="${escapeHtml(item.local_path)}" target="_blank">Open</a>`
       : `<a class="pdfLink" href="${escapeHtml(item.remote_url)}" target="_blank">Remote</a>`;

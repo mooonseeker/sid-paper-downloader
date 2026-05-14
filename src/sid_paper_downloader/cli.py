@@ -7,6 +7,7 @@ from pathlib import Path
 import typer
 
 from sid_paper_downloader.auth import SID_APP_URL, save_login_state
+from sid_paper_downloader.control_server import serve_control_ui
 from sid_paper_downloader.downloader import download_rows, verify_downloads, write_report
 from sid_paper_downloader.library_exporter import export_library as export_library_html
 from sid_paper_downloader.manifest import ManifestRow, read_manifest, rows_from_program_items, write_manifest
@@ -106,6 +107,18 @@ def export_library(
     rows = read_manifest(manifest)
     target = export_library_html(rows, downloads, output_file=output)
     typer.echo(f"Wrote {target}")
+
+
+@app.command()
+def serve(
+    manifest: Path = typer.Option(Path("output/manifest.csv"), "--manifest", help="Manifest CSV path."),
+    downloads: Path = typer.Option(Path("downloads"), "--downloads", help="Downloads folder."),
+    host: str = typer.Option("127.0.0.1", "--host", help="Server host."),
+    port: int = typer.Option(8765, "--port", min=1, max=65535, help="Server port."),
+    open_browser: bool = typer.Option(False, "--open", help="Open the control UI in the default browser."),
+) -> None:
+    """Serve a local browser UI for manually controlled downloads."""
+    serve_control_ui(manifest, downloads, host=host, port=port, open_browser=open_browser)
 
 
 def _filter_rows(

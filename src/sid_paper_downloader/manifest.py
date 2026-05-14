@@ -33,7 +33,7 @@ class ManifestRow:
     title: str
     page: int
     url: str
-    status: str = "pending"
+    status: str = "untried"
     path: str = ""
     error: str = ""
 
@@ -67,7 +67,7 @@ def read_manifest(path: Path) -> list[ManifestRow]:
                     title=row.get("title", ""),
                     page=int(row.get("page") or 0),
                     url=row["url"],
-                    status=row.get("status") or "pending",
+                    status=row.get("status") or "untried",
                     path=row.get("path") or "",
                     error=row.get("error") or "",
                 )
