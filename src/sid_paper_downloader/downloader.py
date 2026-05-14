@@ -36,6 +36,11 @@ def download_rows(
     delay_max: float = 1.5,
 ) -> DownloadSummary:
     """Download PDFs listed in manifest rows."""
+    if delay_min < 0 or delay_max < 0:
+        raise ValueError("Download delays must be non-negative.")
+    if delay_min > delay_max:
+        raise ValueError("Minimum delay cannot be greater than maximum delay.")
+
     headers = {
         "User-Agent": "Mozilla/5.0 sid-paper-downloader/0.1",
         "Accept": "application/pdf,application/octet-stream;q=0.9,*/*;q=0.8",
@@ -88,7 +93,7 @@ def download_rows(
 
             time.sleep(random.uniform(delay_min, delay_max))
 
-    return DownloadSummary(total=len(rows), downloaded=downloaded, skipped=skipped, failed=failed)
+    return DownloadSummary(total=downloaded + skipped + failed, downloaded=downloaded, skipped=skipped, failed=failed)
 
 
 def verify_downloads(root: Path) -> tuple[list[Path], list[Path]]:

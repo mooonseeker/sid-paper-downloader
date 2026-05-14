@@ -1,7 +1,7 @@
 SID Paper Downloader
 ====================
 
-Download SID Display Week 2026 Digest PDFs from an authenticated browser session.
+Download SID Display Week 2026 Digest PDFs from the public digest PDF URLs parsed from the symposium program.
 
 Workflow
 --------
@@ -12,7 +12,35 @@ Workflow
 uv run sid-paper-downloader parse 2026-Symposium-Program.pdf --out output/manifest.csv
 ```
 
-2. Save an authenticated browser session:
+2. Download a small smoke-test set:
+
+```powershell
+uv run sid-paper-downloader download output/manifest.csv --out downloads --id 1-1 --id P-183 --force
+```
+
+3. Download all PDFs:
+
+```powershell
+uv run sid-paper-downloader download output/manifest.csv --out downloads
+```
+
+Limit or filter a larger run:
+
+```powershell
+uv run sid-paper-downloader download output/manifest.csv --out downloads --type oral --limit 10
+uv run sid-paper-downloader download output/manifest.csv --out downloads --type poster --delay-min 1 --delay-max 2
+```
+
+4. Verify downloaded files:
+
+```powershell
+uv run sid-paper-downloader verify downloads
+```
+
+Optional Authentication
+-----------------------
+
+The tested digest PDF URLs currently download without login. If SID later requires authentication, save a browser session:
 
 ```powershell
 uv run playwright install chromium
@@ -20,8 +48,13 @@ uv run sid-paper-downloader login --state output/storage_state.json
 ```
 
 Log in to the SID/Eventscribe web app in the browser window, then press Enter in the terminal.
+If Playwright's Chromium download is slow or unavailable, use an installed browser:
 
-3. Download PDFs:
+```powershell
+uv run sid-paper-downloader login --state output/storage_state.json --executable-path "C:\Program Files\Google\Chrome\Application\chrome.exe"
+```
+
+Then pass the saved state to `download`:
 
 ```powershell
 uv run sid-paper-downloader download output/manifest.csv --state output/storage_state.json --out downloads
@@ -31,12 +64,6 @@ If browser storage state does not include the needed SID cookies, pass a raw bro
 
 ```powershell
 uv run sid-paper-downloader download output/manifest.csv --cookie "name=value; other=value" --out downloads
-```
-
-4. Verify downloaded files:
-
-```powershell
-uv run sid-paper-downloader verify downloads
 ```
 
 The parser normalizes program IDs such as `1.1` to `1-1` and poster IDs such as `P..1`, `P.1`, or `P1` to `P-1`.
