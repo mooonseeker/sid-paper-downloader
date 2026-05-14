@@ -1,0 +1,22 @@
+[project]
+name = "sid-paper-downloader"
+version = "0.1.0"
+description = "Download SID Display Week papers from an authenticated session."
+readme = "README.md"
+authors = [
+    { name = "mooonseeker", email = "zhushengtao1996@outlook.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "playwright>=1.59.0",
+    "pypdf>=6.11.0",
+    "typer>=0.25.1",
+]
+
+[project.scripts]
+sid-paper-downloader = "sid_paper_downloader.cli:app"
+
+[build-system]
+requires = ["uv_build>=0.11.13,<0.12.0"]
+build-backend = "uv_build"
