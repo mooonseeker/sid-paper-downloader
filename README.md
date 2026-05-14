@@ -37,6 +37,14 @@ uv run sid-paper-downloader download output/manifest.csv --out downloads --type 
 uv run sid-paper-downloader verify downloads
 ```
 
+5. Export a shareable paper library:
+
+```powershell
+uv run sid-paper-downloader export-library --manifest output/manifest.csv --downloads downloads
+```
+
+Share the `downloads` folder. Open `downloads/main.html` to search and open local PDFs.
+
 Optional Authentication
 -----------------------
 

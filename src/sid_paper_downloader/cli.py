@@ -8,6 +8,7 @@ import typer
 
 from sid_paper_downloader.auth import SID_APP_URL, save_login_state
 from sid_paper_downloader.downloader import download_rows, verify_downloads, write_report
+from sid_paper_downloader.library_exporter import export_library as export_library_html
 from sid_paper_downloader.manifest import ManifestRow, read_manifest, rows_from_program_items, write_manifest
 from sid_paper_downloader.program_parser import parse_program_pdf
 
@@ -93,6 +94,18 @@ def verify(
     if invalid:
         for path in invalid:
             typer.echo(f"INVALID {path}")
+
+
+@app.command()
+def export_library(
+    manifest: Path = typer.Option(Path("output/manifest.csv"), "--manifest", help="Manifest CSV path."),
+    downloads: Path = typer.Option(Path("downloads"), "--downloads", help="Downloads folder to make shareable."),
+    output: Path | None = typer.Option(None, "--output", help="HTML output path. Defaults to downloads/main.html."),
+) -> None:
+    """Export a standalone HTML library into the downloads folder."""
+    rows = read_manifest(manifest)
+    target = export_library_html(rows, downloads, output_file=output)
+    typer.echo(f"Wrote {target}")
 
 
 def _filter_rows(
