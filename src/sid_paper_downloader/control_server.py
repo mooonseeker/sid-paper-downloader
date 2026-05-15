@@ -11,6 +11,7 @@ from typing import Any
 import json
 import random
 import time
+from urllib.parse import unquote, urlparse
 import webbrowser
 
 import httpx
@@ -96,6 +97,8 @@ def _make_handler(state: ControlState) -> type[BaseHTTPRequestHandler]:
                 return
             if self.path == "/api/status":
                 self._send_json(state.snapshot())
+                return
+            if self._send_download_file():
                 return
             self.send_error(HTTPStatus.NOT_FOUND)
 
@@ -185,6 +188,31 @@ def _make_handler(state: ControlState) -> type[BaseHTTPRequestHandler]:
             self.send_header("Content-Length", str(len(data)))
             self.end_headers()
             self.wfile.write(data)
+
+        def _send_download_file(self) -> bool:
+            request_path = unquote(urlparse(self.path).path).lstrip("/")
+            if not request_path.lower().endswith(".pdf"):
+                return False
+
+            base_dir = state.downloads_dir.resolve()
+            target = (base_dir / request_path).resolve()
+            try:
+                target.relative_to(base_dir)
+            except ValueError:
+                self.send_error(HTTPStatus.NOT_FOUND)
+                return True
+
+            if not target.is_file():
+                self.send_error(HTTPStatus.NOT_FOUND)
+                return True
+
+            data = target.read_bytes()
+            self.send_response(HTTPStatus.OK)
+            self.send_header("Content-Type", "application/pdf")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+            return True
 
     return Handler
 
@@ -387,11 +415,14 @@ def _control_html() -> str:
     th { position:sticky; top:0; background:#eef2f7; font-size:12px; text-transform:uppercase; z-index:1; }
     tr:hover td { background:#f9fbfd; }
     .id { width:90px; font-weight:700; white-space:nowrap; }
-    .type, .page, .state, .choose { width:96px; white-space:nowrap; }
+    .type, .page, .state, .choose, .pdf { width:96px; white-space:nowrap; }
     .badge { display:inline-flex; align-items:center; min-height:24px; border-radius:999px; padding:2px 8px; font-size:12px; font-weight:700; }
     .ok { color:#137047; background:#e7f6ef; }
     .missing { color:#9a4b00; background:#fff3df; }
     .untried { color:#475467; background:#eef2f7; }
+    .pdfLink { color:#115e59; font-weight:700; text-decoration:none; }
+    .pdfLink:hover { text-decoration:underline; }
+    .fileSize { color:#98a2b3; font-size:12px; font-weight:400; white-space:nowrap; }
     .paperKind { color:#b42318; font-weight:700; }
     .log { min-height:24px; color:var(--muted); }
     @media (max-width:760px) { main { width:min(100% - 20px, 1500px); } header { flex-direction:column; align-items:stretch; } .stats div { flex-basis:45%; } }
@@ -415,6 +446,7 @@ def _control_html() -> str:
     <label class="search"><span>Search</span><input id="search" type="search" placeholder="ID or title"></label>
     <label><span>Type</span><select id="type"><option value="all">All</option><option value="oral">Oral</option><option value="poster">Poster</option></select></label>
     <label><span>Status</span><select id="status"><option value="all">All</option><option value="untried">Untried</option><option value="missing">Missing</option><option value="downloaded">Downloaded</option></select></label>
+    <label><span>Sort</span><select id="sort"><option value="program">Program order</option><option value="id">ID</option><option value="title">Title</option><option value="size">File size</option></select></label>
     <label><span>Delay min</span><input id="delayMin" type="number" min="0" step="0.1" value="0.2"></label>
     <label><span>Delay max</span><input id="delayMax" type="number" min="0" step="0.1" value="0.6"></label>
   </section>
@@ -442,7 +474,7 @@ def _control_html() -> str:
 
   <section class="panel">
     <table>
-      <thead><tr><th class="choose"><input id="toggleAll" type="checkbox"></th><th>ID</th><th>Type</th><th>Title</th><th>Page</th><th>Status</th></tr></thead>
+      <thead><tr><th class="choose"><input id="toggleAll" type="checkbox"></th><th>ID</th><th>Type</th><th>Title</th><th>Page</th><th>Status</th><th>PDF</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </section>
@@ -461,17 +493,46 @@ function normalizeId(query) {
   return "";
 }
 
+function formatBytes(value) {
+  if (!value) return "";
+  const units = ["B", "KB", "MB", "GB"];
+  let size = value;
+  let unit = 0;
+  while (size >= 1024 && unit < units.length - 1) {
+    size /= 1024;
+    unit += 1;
+  }
+  return `${size.toFixed(size >= 10 || unit === 0 ? 0 : 1)} ${units[unit]}`;
+}
+
+function compareIds(a, b) {
+  const parse = (id) => id.startsWith("P-")
+    ? [1, Number(id.slice(2))]
+    : [0, ...id.split("-").map(Number)];
+  const left = parse(a.paper_id);
+  const right = parse(b.paper_id);
+  for (let i = 0; i < Math.max(left.length, right.length); i += 1) {
+    const diff = (left[i] || 0) - (right[i] || 0);
+    if (diff) return diff;
+  }
+  return 0;
+}
+
 function filtered() {
   const q = $("search").value.trim().toLowerCase();
   const qid = normalizeId(q);
   const type = $("type").value;
   const status = $("status").value;
-  return items.filter((item) => {
+  const visible = items.filter((item) => {
     const matchQuery = !q || (qid ? item.paper_id.toUpperCase() === qid : item.paper_id.toLowerCase().includes(q) || item.title.toLowerCase().includes(q));
     const matchType = type === "all" || item.type === type;
     const matchStatus = status === "all" || item.status === status;
     return matchQuery && matchType && matchStatus;
   });
+  if ($("sort").value === "id") visible.sort(compareIds);
+  if ($("sort").value === "title") visible.sort((a, b) => a.title.localeCompare(b.title));
+  if ($("sort").value === "size") visible.sort((a, b) => b.size_bytes - a.size_bytes || compareIds(a, b));
+  return visible;
 }
 
 function render() {
@@ -491,15 +552,20 @@ function render() {
       : item.status === "missing"
         ? `<span class="badge missing">Missing</span>`
         : `<span class="badge untried">Untried</span>`;
+    const size = item.downloaded ? ` <span class="fileSize">· ${formatBytes(item.size_bytes)}</span>` : "";
+    const pdf = item.downloaded
+      ? `<a class="pdfLink" href="${escapeHtml(item.local_path)}" target="_blank">Open</a>`
+      : `<a class="pdfLink" href="${escapeHtml(item.url)}" target="_blank">Remote</a>`;
     return `<tr>
       <td class="choose"><input type="checkbox" data-id="${escapeHtml(item.paper_id)}" ${checked}></td>
       <td class="id">${escapeHtml(item.paper_id)}</td>
       <td class="type">${escapeHtml(item.type)}</td>
-      <td>${formatTitle(item.title)}</td>
+      <td>${formatTitle(item.title)}${size}</td>
       <td class="page">${item.page}</td>
       <td class="state">${status}</td>
+      <td class="pdf">${pdf}</td>
     </tr>`;
-  }).join("") || `<tr><td colspan="6">No matching papers</td></tr>`;
+  }).join("") || `<tr><td colspan="7">No matching papers</td></tr>`;
   document.querySelectorAll("input[data-id]").forEach((box) => {
     box.addEventListener("change", () => {
       if (box.checked) chosen.add(box.dataset.id); else chosen.delete(box.dataset.id);
@@ -582,7 +648,7 @@ $("toggleAll").addEventListener("change", (event) => {
   }
   render();
 });
-["search","type","status"].forEach((id) => $(id).addEventListener("input", render));
+["search","type","status","sort"].forEach((id) => $(id).addEventListener("input", render));
 
 loadManifest().then(refreshStatus);
 setInterval(refreshStatus, 1000);
