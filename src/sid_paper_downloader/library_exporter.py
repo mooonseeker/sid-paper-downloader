@@ -86,14 +86,19 @@ def _render_html(payload: dict[str, object]) -> str:
         <h1>SID Display Week 2026 Papers</h1>
         <p class="summary">Unofficial navigation entry by @mooonseeker.</p>
       </div>
-      <div class="actions">
-        <button id="copyIds" type="button">Copy IDs</button>
-        <button id="resetFilters" type="button">Reset</button>
-      </div>
+      <section class="stats" aria-label="Library statistics">
+        <div class="statCard statVisible"><strong id="statVisible">0</strong><span>Visible</span></div>
+        <div class="statCard statDownloaded"><strong id="statDownloaded">0</strong><span>Downloaded</span></div>
+        <div class="statCard statMissing"><strong id="statMissing">0</strong><span>Missing</span></div>
+        <div class="statCard statUntried"><strong id="statUntried">0</strong><span>Untried</span></div>
+        <div class="statCard statOral"><strong id="statOral">0</strong><span>Oral</span></div>
+        <div class="statCard statPoster"><strong id="statPoster">0</strong><span>Poster</span></div>
+      </section>
     </header>
 
     <section class="toolbar" aria-label="Filters">
       <nav id="tagBar" class="tagBar" aria-label="Paper groups"></nav>
+      <button id="resetFilters" type="button">Reset</button>
       <label class="search">
         <span>Search</span>
         <input id="searchInput" type="search" autocomplete="off" placeholder="ID or title">
@@ -116,15 +121,6 @@ def _render_html(payload: dict[str, object]) -> str:
           <option value="size">File size</option>
         </select>
       </label>
-    </section>
-
-    <section class="stats" aria-label="Library statistics">
-      <div class="statCard statVisible"><strong id="statVisible">0</strong><span>Visible</span></div>
-      <div class="statCard statDownloaded"><strong id="statDownloaded">0</strong><span>Downloaded</span></div>
-      <div class="statCard statMissing"><strong id="statMissing">0</strong><span>Missing</span></div>
-      <div class="statCard statUntried"><strong id="statUntried">0</strong><span>Untried</span></div>
-      <div class="statCard statOral"><strong id="statOral">0</strong><span>Oral</span></div>
-      <div class="statCard statPoster"><strong id="statPoster">0</strong><span>Poster</span></div>
     </section>
 
     <section class="tableWrap" aria-label="Papers">
@@ -212,7 +208,6 @@ h1 {
   line-height: 1.4;
 }
 
-.actions,
 .toolbar {
   display: flex;
   align-items: end;
@@ -318,8 +313,9 @@ label span {
 .stats {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 8px;
+  flex: 1 1 760px;
+  max-width: 900px;
 }
 
 .statCard {
@@ -327,7 +323,7 @@ label span {
   border: 1px solid var(--line);
   border-left: 5px solid var(--line-strong);
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 8px 10px;
 }
 
 .statVisible {
@@ -362,15 +358,15 @@ label span {
 
 .stats strong {
   display: block;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.1;
 }
 
 .stats span {
   display: block;
-  margin-top: 4px;
+  margin-top: 3px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -475,6 +471,13 @@ a.pdfLink:hover {
   text-decoration: underline;
 }
 
+.fileSize {
+  color: #98a2b3;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
 .empty {
   padding: 26px 12px;
   color: var(--muted);
@@ -492,12 +495,9 @@ a.pdfLink:hover {
     flex-direction: column;
   }
 
-  .actions button {
-    flex: 1 1 auto;
-  }
-
   .stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
   }
 
   .tagBar {
@@ -531,7 +531,6 @@ const controls = {
   status: document.getElementById("statusFilter"),
   sort: document.getElementById("sortMode"),
   reset: document.getElementById("resetFilters"),
-  copy: document.getElementById("copyIds"),
   tagBar: document.getElementById("tagBar"),
 };
 
@@ -661,7 +660,7 @@ function renderPaperRow(item) {
   const pdf = item.downloaded
     ? `<a class="pdfLink" href="${escapeHtml(item.local_path)}" target="_blank">Open</a>`
     : `<a class="pdfLink" href="${escapeHtml(item.remote_url)}" target="_blank">Remote</a>`;
-  const size = item.downloaded ? ` <span class="summary">· ${formatBytes(item.size_bytes)}</span>` : "";
+  const size = item.downloaded ? ` <span class="fileSize">· ${formatBytes(item.size_bytes)}</span>` : "";
   return `<tr>
     <td class="id">${escapeHtml(item.paper_id)}</td>
     <td>${escapeHtml(item.title)}${size}</td>
@@ -717,16 +716,6 @@ controls.reset.addEventListener("click", () => {
   controls.sort.value = "program";
   activeTag = tags[0].id;
   render();
-});
-controls.copy.addEventListener("click", async () => {
-  const text = filteredItems().map((item) => item.paper_id).join("\n");
-  try {
-    await navigator.clipboard.writeText(text);
-    controls.copy.textContent = "Copied";
-    setTimeout(() => { controls.copy.textContent = "Copy IDs"; }, 900);
-  } catch {
-    window.prompt("Copy IDs", text);
-  }
 });
 
 render();
