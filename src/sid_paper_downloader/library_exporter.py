@@ -267,14 +267,14 @@ label span {
 .tagBar {
   flex: 1 0 100%;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 8px;
 }
 
 .tagButton {
   height: auto;
   min-height: 46px;
-  padding: 9px 12px;
+  padding: 9px 8px;
   text-align: center;
   background: var(--panel);
 }
@@ -517,6 +517,7 @@ const library = JSON.parse(document.getElementById("library-data").textContent);
 const items = library.items.map((item, index) => ({ ...item, index }));
 const sessionTopics = library.session_topics || {};
 const tags = [
+  { id: "all", label: "All", all: true, featured: true },
   { id: "oral-all", label: "Oral", start: 1, end: 118, featured: true },
   { id: "oral-1", label: "Session 1-30", start: 1, end: 30 },
   { id: "oral-2", label: "Session 31-60", start: 31, end: 60 },
@@ -524,7 +525,7 @@ const tags = [
   { id: "oral-4", label: "Session 91-118", start: 91, end: 118 },
   { id: "posters", label: "Poster", poster: true, featured: true },
 ];
-let activeTag = tags[0].id;
+let activeTag = "oral-all";
 
 const controls = {
   search: document.getElementById("searchInput"),
@@ -588,6 +589,7 @@ function escapeHtml(value) {
 }
 
 function itemInTag(item, tag) {
+  if (tag.all) return true;
   if (tag.poster) return item.type === "poster";
   return item.type === "oral" && item.session >= tag.start && item.session <= tag.end;
 }
@@ -603,7 +605,7 @@ function sessionTitle(session) {
 function renderTags() {
   controls.tagBar.innerHTML = tags.map((tag) => {
     const selected = tag.id === activeTag ? "true" : "false";
-    const className = tag.id === "oral-all" ? "tagButton primaryGroup" : tag.poster ? "tagButton posterGroup" : "tagButton";
+    const className = tag.all || tag.id === "oral-all" ? "tagButton primaryGroup" : tag.poster ? "tagButton posterGroup" : "tagButton";
     return `<button class="${className}" type="button" role="tab" aria-selected="${selected}" data-tag="${tag.id}">
       <strong>${escapeHtml(tag.label)}</strong>
     </button>`;
@@ -691,7 +693,7 @@ function render() {
     return;
   }
 
-  if (tag.id === "oral-all" || tag.poster) {
+  if (tag.all || tag.id === "oral-all" || tag.poster) {
     nodes.rows.innerHTML = visible.map(renderPaperRow).join("");
     return;
   }
@@ -707,14 +709,17 @@ function render() {
     .join("");
 }
 
-controls.search.addEventListener("input", render);
+controls.search.addEventListener("input", () => {
+  if (controls.search.value.trim()) activeTag = "all";
+  render();
+});
 controls.status.addEventListener("change", render);
 controls.sort.addEventListener("change", render);
 controls.reset.addEventListener("click", () => {
   controls.search.value = "";
   controls.status.value = "all";
   controls.sort.value = "program";
-  activeTag = tags[0].id;
+  activeTag = "oral-all";
   render();
 });
 
