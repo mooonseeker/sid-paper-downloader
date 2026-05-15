@@ -11,7 +11,7 @@ from sid_paper_downloader.control_server import serve_control_ui
 from sid_paper_downloader.downloader import download_rows, verify_downloads, write_report
 from sid_paper_downloader.library_exporter import export_library as export_library_html
 from sid_paper_downloader.manifest import ManifestRow, read_manifest, rows_from_program_items, write_manifest
-from sid_paper_downloader.program_parser import parse_program_pdf
+from sid_paper_downloader.program_parser import extract_session_topics, parse_program_pdf
 
 
 app = typer.Typer(help="Parse and download SID Display Week 2026 paper PDFs.")
@@ -102,10 +102,16 @@ def export_library(
     manifest: Path = typer.Option(Path("output/manifest.csv"), "--manifest", help="Manifest CSV path."),
     downloads: Path = typer.Option(Path("downloads"), "--downloads", help="Downloads folder to make shareable."),
     output: Path | None = typer.Option(None, "--output", help="HTML output path. Defaults to downloads/main.html."),
+    program: Path | None = typer.Option(
+        Path("2026-Symposium-Program.pdf"),
+        "--program",
+        help="Program PDF used to add oral session topics. Topics are skipped when the file is missing.",
+    ),
 ) -> None:
     """Export a standalone HTML library into the downloads folder."""
     rows = read_manifest(manifest)
-    target = export_library_html(rows, downloads, output_file=output)
+    session_topics = extract_session_topics(program) if program is not None and program.exists() else {}
+    target = export_library_html(rows, downloads, output_file=output, session_topics=session_topics)
     typer.echo(f"Wrote {target}")
 
 

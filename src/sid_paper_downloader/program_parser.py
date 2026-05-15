@@ -18,6 +18,18 @@ _PROGRAM_LINE_RE = re.compile(
     r"^\s*(?P<raw_id>(?:\d{1,3}[.-]\d{1,2})|(?:P\s*(?:[.\-]\s*)*\d{1,3}))\s*:\s*(?P<title>.+?)\s*$",
     re.IGNORECASE,
 )
+_SESSION_LINE_RE = re.compile(r"^\s*Session\s+(?P<number>\d{1,3}):\s*(?P<title>.+?)\s*$")
+_SESSION_STOP_RE = re.compile(
+    r"^\s*(?:"
+    r"(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s+"
+    r"|Chair:"
+    r"|Co-Chair:"
+    r"|\d{1,3}[.-]\d{1,2}:"
+    r"|P\s*(?:[.\-]\s*)*\d{1,3}:"
+    r"|Session\s+\d{1,3}:"
+    r")",
+    re.IGNORECASE,
+)
 
 
 @dataclass(frozen=True)
@@ -80,6 +92,38 @@ def parse_program_pdf(pdf_path: Path) -> list[ProgramItem]:
             )
 
     return items
+
+
+def extract_session_topics(pdf_path: Path) -> dict[int, str]:
+    """Extract oral session topic titles from a SID symposium program PDF."""
+    reader = PdfReader(pdf_path)
+    topics: dict[int, str] = {}
+
+    for page in reader.pages:
+        lines = (page.extract_text() or "").splitlines()
+        index = 0
+        while index < len(lines):
+            match = _SESSION_LINE_RE.match(lines[index])
+            if match is None:
+                index += 1
+                continue
+
+            number = int(match.group("number"))
+            title_parts = [match.group("title").strip()]
+            index += 1
+            while index < len(lines):
+                continuation = lines[index].strip()
+                if not continuation or _SESSION_STOP_RE.match(continuation):
+                    break
+                title_parts.append(continuation)
+                index += 1
+            topics[number] = _normalize_session_topic(" ".join(title_parts))
+
+    return topics
+
+
+def _normalize_session_topic(value: str) -> str:
+    return re.sub(r"\s+", " ", value.replace("- ", "-")).strip()
 
 
 def _iter_program_lines(text: str) -> Iterable[tuple[str, str]]:

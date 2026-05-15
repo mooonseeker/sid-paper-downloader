@@ -9,7 +9,12 @@ import json
 from sid_paper_downloader.manifest import ManifestRow
 
 
-def export_library(rows: list[ManifestRow], downloads_dir: Path, output_file: Path | None = None) -> Path:
+def export_library(
+    rows: list[ManifestRow],
+    downloads_dir: Path,
+    output_file: Path | None = None,
+    session_topics: dict[int, str] | None = None,
+) -> Path:
     """Write a standalone HTML library into the downloads directory."""
     downloads_dir.mkdir(parents=True, exist_ok=True)
     target = output_file or downloads_dir / "main.html"
@@ -17,6 +22,7 @@ def export_library(rows: list[ManifestRow], downloads_dir: Path, output_file: Pa
     payload = {
         "generated_at": datetime.now(UTC).isoformat(),
         "items": items,
+        "session_topics": session_topics or {},
     }
     target.write_text(_render_html(payload), encoding="utf-8")
     return target
@@ -32,7 +38,7 @@ def _row_to_library_item(row: ManifestRow, downloads_dir: Path) -> dict[str, obj
         "raw_id": row.raw_id,
         "type": row.item_type,
         "title": row.title,
-        "page": row.page,
+        "session": _session_number(row.paper_id),
         "remote_url": row.url,
         "local_path": local_path.as_posix(),
         "status": effective_status,
@@ -40,6 +46,12 @@ def _row_to_library_item(row: ManifestRow, downloads_dir: Path) -> dict[str, obj
         "downloaded": downloaded,
         "size_bytes": absolute_path.stat().st_size if downloaded else 0,
     }
+
+
+def _session_number(paper_id: str) -> int | None:
+    if paper_id.startswith("P-"):
+        return None
+    return int(paper_id.split("-", maxsplit=1)[0])
 
 
 def _local_pdf_path(row: ManifestRow) -> Path:
@@ -72,7 +84,7 @@ def _render_html(payload: dict[str, object]) -> str:
     <header class="topbar">
       <div>
         <h1>SID Display Week 2026 Papers</h1>
-        <p id="summary" class="summary"></p>
+        <p class="summary">Unofficial navigation entry by @mooonseeker.</p>
       </div>
       <div class="actions">
         <button id="copyIds" type="button">Copy IDs</button>
@@ -81,17 +93,10 @@ def _render_html(payload: dict[str, object]) -> str:
     </header>
 
     <section class="toolbar" aria-label="Filters">
+      <nav id="tagBar" class="tagBar" aria-label="Paper groups"></nav>
       <label class="search">
         <span>Search</span>
         <input id="searchInput" type="search" autocomplete="off" placeholder="ID or title">
-      </label>
-      <label>
-        <span>Type</span>
-        <select id="typeFilter">
-          <option value="all">All</option>
-          <option value="oral">Oral</option>
-          <option value="poster">Poster</option>
-        </select>
       </label>
       <label>
         <span>Status</span>
@@ -114,12 +119,12 @@ def _render_html(payload: dict[str, object]) -> str:
     </section>
 
     <section class="stats" aria-label="Library statistics">
-      <div><strong id="statVisible">0</strong><span>Visible</span></div>
-      <div><strong id="statDownloaded">0</strong><span>Downloaded</span></div>
-      <div><strong id="statMissing">0</strong><span>Missing</span></div>
-      <div><strong id="statUntried">0</strong><span>Untried</span></div>
-      <div><strong id="statOral">0</strong><span>Oral</span></div>
-      <div><strong id="statPoster">0</strong><span>Poster</span></div>
+      <div class="statCard statVisible"><strong id="statVisible">0</strong><span>Visible</span></div>
+      <div class="statCard statDownloaded"><strong id="statDownloaded">0</strong><span>Downloaded</span></div>
+      <div class="statCard statMissing"><strong id="statMissing">0</strong><span>Missing</span></div>
+      <div class="statCard statUntried"><strong id="statUntried">0</strong><span>Untried</span></div>
+      <div class="statCard statOral"><strong id="statOral">0</strong><span>Oral</span></div>
+      <div class="statCard statPoster"><strong id="statPoster">0</strong><span>Poster</span></div>
     </section>
 
     <section class="tableWrap" aria-label="Papers">
@@ -127,9 +132,7 @@ def _render_html(payload: dict[str, object]) -> str:
         <thead>
           <tr>
             <th>ID</th>
-            <th>Type</th>
             <th>Title</th>
-            <th>Page</th>
             <th>Status</th>
             <th>PDF</th>
           </tr>
@@ -158,8 +161,10 @@ def _css() -> str:
   --muted: #667085;
   --line: #d8dee8;
   --line-strong: #b9c2d0;
+  --soft: #f3f6f9;
   --accent: #0f766e;
   --accent-dark: #115e59;
+  --accent-soft: #dff4ef;
   --ok-bg: #e7f6ef;
   --ok-text: #137047;
   --miss-bg: #fff3df;
@@ -204,6 +209,7 @@ h1 {
 .summary {
   margin: 0;
   color: var(--muted);
+  line-height: 1.4;
 }
 
 .actions,
@@ -260,6 +266,53 @@ label span {
 
 .toolbar {
   margin-bottom: 14px;
+  align-items: end;
+}
+
+.tagBar {
+  flex: 1 0 100%;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tagButton {
+  height: auto;
+  min-height: 46px;
+  padding: 9px 12px;
+  text-align: center;
+  background: var(--panel);
+}
+
+.tagButton.primaryGroup {
+  border-color: #0f766e;
+  background: #f0fdfa;
+}
+
+.tagButton.posterGroup {
+  border-color: #7c3aed;
+  background: #f5f3ff;
+}
+
+.tagButton[aria-selected="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
+.tagButton.posterGroup[aria-selected="true"] {
+  border-color: #7c3aed;
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.tagButton strong {
+  display: block;
+}
+
+.tagButton strong {
+  font-size: 14px;
+  line-height: 1.2;
 }
 
 .stats {
@@ -269,11 +322,42 @@ label span {
   margin-bottom: 14px;
 }
 
-.stats div {
+.statCard {
   background: var(--panel);
   border: 1px solid var(--line);
+  border-left: 5px solid var(--line-strong);
   border-radius: 8px;
   padding: 10px 12px;
+}
+
+.statVisible {
+  background: #f8fafc;
+  border-left-color: #64748b;
+}
+
+.statDownloaded {
+  background: #f0fdf4;
+  border-left-color: #16a34a;
+}
+
+.statMissing {
+  background: #fff7ed;
+  border-left-color: #ea580c;
+}
+
+.statUntried {
+  background: #f1f5f9;
+  border-left-color: #94a3b8;
+}
+
+.statOral {
+  background: #ecfeff;
+  border-left-color: #0891b2;
+}
+
+.statPoster {
+  background: #f5f3ff;
+  border-left-color: #7c3aed;
 }
 
 .stats strong {
@@ -332,12 +416,28 @@ td.id {
   white-space: nowrap;
 }
 
-td.type,
-td.page,
 td.status,
 td.pdf {
   width: 110px;
   white-space: nowrap;
+}
+
+.sessionRow td {
+  background: var(--soft);
+  border-bottom-color: var(--line-strong);
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.sessionLabel {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .badge {
@@ -400,6 +500,10 @@ a.pdfLink:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .tagBar {
+    grid-template-columns: 1fr;
+  }
+
   h1 {
     font-size: 22px;
   }
@@ -411,19 +515,28 @@ def _js() -> str:
     return r"""
 const library = JSON.parse(document.getElementById("library-data").textContent);
 const items = library.items.map((item, index) => ({ ...item, index }));
+const sessionTopics = library.session_topics || {};
+const tags = [
+  { id: "oral-all", label: "Oral", start: 1, end: 118, featured: true },
+  { id: "oral-1", label: "Session 1-30", start: 1, end: 30 },
+  { id: "oral-2", label: "Session 31-60", start: 31, end: 60 },
+  { id: "oral-3", label: "Session 61-90", start: 61, end: 90 },
+  { id: "oral-4", label: "Session 91-118", start: 91, end: 118 },
+  { id: "posters", label: "Poster", poster: true, featured: true },
+];
+let activeTag = tags[0].id;
 
 const controls = {
   search: document.getElementById("searchInput"),
-  type: document.getElementById("typeFilter"),
   status: document.getElementById("statusFilter"),
   sort: document.getElementById("sortMode"),
   reset: document.getElementById("resetFilters"),
   copy: document.getElementById("copyIds"),
+  tagBar: document.getElementById("tagBar"),
 };
 
 const nodes = {
   rows: document.getElementById("paperRows"),
-  summary: document.getElementById("summary"),
   visible: document.getElementById("statVisible"),
   downloaded: document.getElementById("statDownloaded"),
   missing: document.getElementById("statMissing"),
@@ -475,20 +588,51 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function itemInTag(item, tag) {
+  if (tag.poster) return item.type === "poster";
+  return item.type === "oral" && item.session >= tag.start && item.session <= tag.end;
+}
+
+function currentTag() {
+  return tags.find((tag) => tag.id === activeTag) || tags[0];
+}
+
+function sessionTitle(session) {
+  return sessionTopics[String(session)] || "Session topic not found in program PDF";
+}
+
+function renderTags() {
+  controls.tagBar.innerHTML = tags.map((tag) => {
+    const selected = tag.id === activeTag ? "true" : "false";
+    const className = tag.id === "oral-all" ? "tagButton primaryGroup" : tag.poster ? "tagButton posterGroup" : "tagButton";
+    return `<button class="${className}" type="button" role="tab" aria-selected="${selected}" data-tag="${tag.id}">
+      <strong>${escapeHtml(tag.label)}</strong>
+    </button>`;
+  }).join("");
+
+  controls.tagBar.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeTag = button.dataset.tag;
+      render();
+    });
+  });
+}
+
 function filteredItems() {
   const query = controls.search.value.trim().toLowerCase();
   const normalizedId = normalizeQueryId(query);
-  const type = controls.type.value;
   const status = controls.status.value;
+  const tag = currentTag();
 
   const filtered = items.filter((item) => {
+    const topic = item.session ? sessionTitle(item.session).toLowerCase() : "";
     const matchesQuery = !query || (normalizedId
       ? item.paper_id.toUpperCase() === normalizedId
-      : item.paper_id.toLowerCase().includes(query) || item.title.toLowerCase().includes(query));
-    const matchesType = type === "all" || item.type === type;
+      : item.paper_id.toLowerCase().includes(query) || item.title.toLowerCase().includes(query) || topic.includes(query));
+    const matchesTag = itemInTag(item, tag);
     const matchesStatus = status === "all"
       || item.status === status;
-    return matchesQuery && matchesType && matchesStatus;
+    return matchesTag && matchesQuery && matchesStatus;
   });
 
   if (controls.sort.value === "id") filtered.sort(compareIds);
@@ -498,15 +642,44 @@ function filteredItems() {
   return filtered;
 }
 
+function renderSessionRows(session, rows) {
+  const header = `<tr class="sessionRow"><td colspan="4">
+    <div class="sessionLabel">
+      <span>Session ${session}</span>
+      <span>${escapeHtml(sessionTitle(session))}</span>
+    </div>
+  </td></tr>`;
+  return header + rows.map(renderPaperRow).join("");
+}
+
+function renderPaperRow(item) {
+  const status = item.status === "downloaded"
+    ? `<span class="badge ok">Downloaded</span>`
+    : item.status === "missing"
+      ? `<span class="badge missing">Missing</span>`
+      : `<span class="badge untried">Untried</span>`;
+  const pdf = item.downloaded
+    ? `<a class="pdfLink" href="${escapeHtml(item.local_path)}" target="_blank">Open</a>`
+    : `<a class="pdfLink" href="${escapeHtml(item.remote_url)}" target="_blank">Remote</a>`;
+  const size = item.downloaded ? ` <span class="summary">· ${formatBytes(item.size_bytes)}</span>` : "";
+  return `<tr>
+    <td class="id">${escapeHtml(item.paper_id)}</td>
+    <td>${escapeHtml(item.title)}${size}</td>
+    <td class="status">${status}</td>
+    <td class="pdf">${pdf}</td>
+  </tr>`;
+}
+
 function render() {
+  renderTags();
   const visible = filteredItems();
   const totalDownloaded = items.filter((item) => item.downloaded).length;
   const totalMissing = items.filter((item) => item.status === "missing").length;
   const totalUntried = items.filter((item) => item.status === "untried").length;
   const totalOral = items.filter((item) => item.type === "oral").length;
   const totalPoster = items.filter((item) => item.type === "poster").length;
+  const tag = currentTag();
 
-  nodes.summary.textContent = `${items.length} entries · ${totalDownloaded} downloaded · ${totalMissing} missing · ${totalUntried} untried`;
   nodes.visible.textContent = String(visible.length);
   nodes.downloaded.textContent = String(totalDownloaded);
   nodes.missing.textContent = String(totalMissing);
@@ -515,40 +688,34 @@ function render() {
   nodes.poster.textContent = String(totalPoster);
 
   if (!visible.length) {
-    nodes.rows.innerHTML = `<tr><td class="empty" colspan="6">No matching papers</td></tr>`;
+    nodes.rows.innerHTML = `<tr><td class="empty" colspan="4">No matching papers</td></tr>`;
     return;
   }
 
-  nodes.rows.innerHTML = visible.map((item) => {
-    const status = item.status === "downloaded"
-      ? `<span class="badge ok">Downloaded</span>`
-      : item.status === "missing"
-        ? `<span class="badge missing">Missing</span>`
-        : `<span class="badge untried">Untried</span>`;
-    const pdf = item.downloaded
-      ? `<a class="pdfLink" href="${escapeHtml(item.local_path)}" target="_blank">Open</a>`
-      : `<a class="pdfLink" href="${escapeHtml(item.remote_url)}" target="_blank">Remote</a>`;
-    const size = item.downloaded ? ` <span class="summary">· ${formatBytes(item.size_bytes)}</span>` : "";
-    return `<tr>
-      <td class="id">${escapeHtml(item.paper_id)}</td>
-      <td class="type">${escapeHtml(item.type)}</td>
-      <td>${escapeHtml(item.title)}${size}</td>
-      <td class="page">${item.page}</td>
-      <td class="status">${status}</td>
-      <td class="pdf">${pdf}</td>
-    </tr>`;
-  }).join("");
+  if (tag.id === "oral-all" || tag.poster) {
+    nodes.rows.innerHTML = visible.map(renderPaperRow).join("");
+    return;
+  }
+
+  const bySession = new Map();
+  visible.forEach((item) => {
+    if (!bySession.has(item.session)) bySession.set(item.session, []);
+    bySession.get(item.session).push(item);
+  });
+  nodes.rows.innerHTML = [...bySession.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([session, rows]) => renderSessionRows(session, rows))
+    .join("");
 }
 
 controls.search.addEventListener("input", render);
-controls.type.addEventListener("change", render);
 controls.status.addEventListener("change", render);
 controls.sort.addEventListener("change", render);
 controls.reset.addEventListener("click", () => {
   controls.search.value = "";
-  controls.type.value = "all";
   controls.status.value = "all";
   controls.sort.value = "program";
+  activeTag = tags[0].id;
   render();
 });
 controls.copy.addEventListener("click", async () => {
