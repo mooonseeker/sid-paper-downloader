@@ -6,6 +6,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 import json
 
+from sid_paper_downloader.downloader import validate_pdf_file
 from sid_paper_downloader.manifest import ManifestRow
 
 
@@ -61,9 +62,9 @@ def _local_pdf_path(row: ManifestRow) -> Path:
 
 def _effective_status(row: ManifestRow, absolute_path: Path) -> str:
     if absolute_path.exists() and absolute_path.stat().st_size > 0:
-        return "downloaded"
-    if row.status == "missing":
-        return "missing"
+        return "downloaded" if validate_pdf_file(absolute_path).valid else "corrupt"
+    if row.status in {"missing", "corrupt"}:
+        return row.status
     return "untried"
 
 
@@ -90,6 +91,7 @@ def _render_html(payload: dict[str, object]) -> str:
         <div class="statCard statVisible"><strong id="statVisible">0</strong><span>Visible</span></div>
         <div class="statCard statDownloaded"><strong id="statDownloaded">0</strong><span>Downloaded</span></div>
         <div class="statCard statMissing"><strong id="statMissing">0</strong><span>Missing</span></div>
+        <div class="statCard statCorrupt"><strong id="statCorrupt">0</strong><span>Corrupt</span></div>
         <div class="statCard statUntried"><strong id="statUntried">0</strong><span>Untried</span></div>
         <div class="statCard statOral"><strong id="statOral">0</strong><span>Oral</span></div>
         <div class="statCard statPoster"><strong id="statPoster">0</strong><span>Poster</span></div>
@@ -110,6 +112,7 @@ def _render_html(payload: dict[str, object]) -> str:
           <option value="untried">Untried</option>
           <option value="downloaded">Downloaded</option>
           <option value="missing">Missing</option>
+          <option value="corrupt">Corrupt</option>
         </select>
       </label>
       <label>
@@ -165,6 +168,8 @@ def _css() -> str:
   --ok-text: #137047;
   --miss-bg: #fff3df;
   --miss-text: #9a4b00;
+  --corrupt-bg: #ffe4e6;
+  --corrupt-text: #9f1239;
   --untried-bg: #eef2f7;
   --untried-text: #475467;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -312,7 +317,7 @@ label span {
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 8px;
   flex: 1 1 760px;
   max-width: 900px;
@@ -339,6 +344,11 @@ label span {
 .statMissing {
   background: #fff7ed;
   border-left-color: #ea580c;
+}
+
+.statCorrupt {
+  background: #fff1f2;
+  border-left-color: #e11d48;
 }
 
 .statUntried {
@@ -456,6 +466,11 @@ td.pdf {
   color: var(--miss-text);
 }
 
+.badge.corrupt {
+  background: var(--corrupt-bg);
+  color: var(--corrupt-text);
+}
+
 .badge.untried {
   background: var(--untried-bg);
   color: var(--untried-text);
@@ -545,6 +560,7 @@ const nodes = {
   visible: document.getElementById("statVisible"),
   downloaded: document.getElementById("statDownloaded"),
   missing: document.getElementById("statMissing"),
+  corrupt: document.getElementById("statCorrupt"),
   untried: document.getElementById("statUntried"),
   oral: document.getElementById("statOral"),
   poster: document.getElementById("statPoster"),
@@ -669,7 +685,9 @@ function renderPaperRow(item) {
     ? `<span class="badge ok">Downloaded</span>`
     : item.status === "missing"
       ? `<span class="badge missing">Missing</span>`
-      : `<span class="badge untried">Untried</span>`;
+      : item.status === "corrupt"
+        ? `<span class="badge corrupt">Corrupt</span>`
+        : `<span class="badge untried">Untried</span>`;
   const pdf = item.downloaded
     ? `<a class="pdfLink" href="${escapeHtml(item.local_path)}" target="_blank">Open</a>`
     : `<a class="pdfLink" href="${escapeHtml(item.remote_url)}" target="_blank">Remote</a>`;
@@ -687,6 +705,7 @@ function render() {
   const visible = filteredItems();
   const totalDownloaded = items.filter((item) => item.downloaded).length;
   const totalMissing = items.filter((item) => item.status === "missing").length;
+  const totalCorrupt = items.filter((item) => item.status === "corrupt").length;
   const totalUntried = items.filter((item) => item.status === "untried").length;
   const totalOral = items.filter((item) => item.type === "oral").length;
   const totalPoster = items.filter((item) => item.type === "poster").length;
@@ -695,6 +714,7 @@ function render() {
   nodes.visible.textContent = String(visible.length);
   nodes.downloaded.textContent = String(totalDownloaded);
   nodes.missing.textContent = String(totalMissing);
+  nodes.corrupt.textContent = String(totalCorrupt);
   nodes.untried.textContent = String(totalUntried);
   nodes.oral.textContent = String(totalOral);
   nodes.poster.textContent = String(totalPoster);

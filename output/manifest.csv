@@ -14,7 +14,7 @@ paper_id,raw_id,type,title,page,url,status,path,error
 3-4,3.4,oral,Research on Optical Improvement Scheme for BM-skip Solution of COE Products,1,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/3-4.pdf,downloaded,papers\3-4.pdf,
 4-1,4.1,oral,Eye Tracking in AI-Assisted AR Glasses Using Pancharatnam Berry Optical Elements,1,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/4-1.pdf,downloaded,papers\4-1.pdf,
 4-2,4.2,oral,Design and Simulation of Photodetector-Based Eye-Tracking System with Optically Defined Detection Areas,1,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/4-2.pdf,downloaded,papers\4-2.pdf,
-4-3,4.3,oral,Invited Paper: Event Camera Assisted All-Weather High Frequency Gaze Detection for XR Glasses and Headsets,1,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/4-3.pdf,downloaded,papers\4-3.pdf,
+4-3,4.3,oral,Invited Paper: Event Camera Assisted All-Weather High Frequency Gaze Detection for XR Glasses and Headsets,1,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/4-3.pdf,corrupt,papers\4-3.pdf,EOF marker not found
 4-4,4.4,oral,Multi-Aperture Superposition Optics for Compact VR: Enabling Wide Field of View and Sensor Integration,1,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/4-4.pdf,downloaded,papers\4-4.pdf,
 4-5,4.5,oral,Gaze-Contingent Foveated Frame-Rate Control for Low-Power XR Devices,2,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/4-5.pdf,downloaded,papers\4-5.pdf,
 5-1,5.1,oral,Distinguished Paper: LIP-Based Perceptual Optimization for Subpixel Rendering Filters,2,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/5-1.pdf,downloaded,papers\5-1.pdf,
@@ -52,7 +52,7 @@ paper_id,raw_id,type,title,page,url,status,path,error
 13-2,13.2,oral,"Development of Low-Cost, Low-Power Consumption, and Narrow-Frame IGZO Panels for IT MFD and DeMUX",3,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/13-2.pdf,downloaded,papers\13-2.pdf,
 13-3,13.3,oral,Seamless Switching Technology of Pixel Clock on AMOLED Notebook Display,3,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/13-3.pdf,downloaded,papers\13-3.pdf,
 13-4,13.4,oral,A High-Refresh Rate and Large-Size OLED Display with DRD Gate Driver for Premium TVs,3,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/13-4.pdf,downloaded,papers\13-4.pdf,
-14-1,14.1,oral,A New Dual Gate LCD Design with DLG Support for High Transmittance,4,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/14-1.pdf,downloaded,papers\14-1.pdf,
+14-1,14.1,oral,A New Dual Gate LCD Design with DLG Support for High Transmittance,4,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/14-1.pdf,corrupt,papers\14-1.pdf,EOF marker not found
 14-2,14.2,oral,A New Dual Gate Pixel Structure Suitable for Large-Size and High-Refresh-Rate LCD Panels,4,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/14-2.pdf,downloaded,papers\14-2.pdf,
 14-3,14.3,oral,High Mobility Oxide for Touch Demux LCD Using Single tTED IC,4,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/14-3.pdf,downloaded,papers\14-3.pdf,
 15-1,15.1,oral,Invited Paper: Visual Performance Standards for Virtual and Augmented Reality Displays,4,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/15-1.pdf,downloaded,papers\15-1.pdf,
@@ -83,7 +83,7 @@ paper_id,raw_id,type,title,page,url,status,path,error
 21-3,21.3,oral,Finite-Field-Based Data Reordering with a Single-Line Memory,5,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/21-3.pdf,downloaded,papers\21-3.pdf,
 21-4,21.4,oral,Adaptive 3D Integer DCT-Based Compression for Mura Data,5,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/21-4.pdf,downloaded,papers\21-4.pdf,
 22-1,22.1,oral,Invited Paper: Development of a 16-inch WQXGA Display that Achieves Both Flicker-Free 1Hz Drive and High Contrast Ratio,5,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/22-1.pdf,downloaded,papers\22-1.pdf,
-22-2,22.2,oral,Improvement Strategies for Flicker in Low Frequency LCD Displays,5,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/22-2.pdf,downloaded,papers\22-2.pdf,
+22-2,22.2,oral,Improvement Strategies for Flicker in Low Frequency LCD Displays,5,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/22-2.pdf,corrupt,papers\22-2.pdf,EOF marker not found
 22-3,22.3,oral,DIT Technology Applied to VA-Type TFT LCDs,5,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/22-3.pdf,downloaded,papers\22-3.pdf,
 22-4,22.4,oral,A 65-inch WRGB Liquid Crystal Display with High Transmittance and 4K-Lossless Resolution,5,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/22-4.pdf,downloaded,papers\22-4.pdf,
 23-1,23.1,oral,A Study on the Impact of Refresh Rate on Real-time FPS Gaming Performance,5,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/23-1.pdf,downloaded,papers\23-1.pdf,
@@ -105,7 +105,7 @@ paper_id,raw_id,type,title,page,url,status,path,error
 28-1,28.1,oral,Invited Paper: Novel Light Field Display Technology for Commercialization,6,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/28-1.pdf,downloaded,papers\28-1.pdf,
 28-2,28.2,oral,Full Depth-of-Field Light-Field Displays by Exploiting a New Degree of Freedom: Synthetic-Aperture Wavefront Coding,6,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/28-2.pdf,downloaded,papers\28-2.pdf,
 28-3,28.3,oral,Fast GPU-Based Ray-Rracing Method for Designing Waveguide AR Displays,6,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/28-3.pdf,downloaded,papers\28-3.pdf,
-28-4,28.4,oral,Ultra-Thin Pancake Lens with Curved Surface Lamination and Segmented Aspheric Elements,6,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/28-4.pdf,downloaded,papers\28-4.pdf,
+28-4,28.4,oral,Ultra-Thin Pancake Lens with Curved Surface Lamination and Segmented Aspheric Elements,6,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/28-4.pdf,corrupt,papers\28-4.pdf,EOF marker not found
 28-5,28.5,oral,Late-News Paper: Quantized RC-LED Matrix Platform for Advanced LEDoS Microdisplay,6,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/28-5.pdf,downloaded,papers\28-5.pdf,
 29-1,29.1,oral,Invited Paper: Single-Pin Temperature Data Transmission Between Ultrasonic Fingerprint Sensor IC and DDIC & Machine,6,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/29-1.pdf,downloaded,papers\29-1.pdf,
 29-2,29.2,oral,Pixel-Level High-Precision IR-Drop Compensation for Multi-Scenario AMOLEDs via Image-Based Luminance Modeling,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/29-2.pdf,downloaded,papers\29-2.pdf,
@@ -115,15 +115,15 @@ paper_id,raw_id,type,title,page,url,status,path,error
 30-3,30.3,oral,Toward Wide-Eyebox Holographic Near-Eye Displays Using Tunable Liquid Crystal Beam Deflector,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/30-3.pdf,downloaded,papers\30-3.pdf,
 31-1,31.1,oral,Invited Paper: Stabilization of Perovskite Nanocrystals for Next-Generation Display,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/31-1.pdf,downloaded,papers\31-1.pdf,
 31-2,31.2,oral,"Invited Paper: Controlling the Direction of Light Emission in Anisotropic Perovskite Nanoparticles Using Alignment, Fusing, and",7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/31-2.pdf,downloaded,papers\31-2.pdf,
-31-3,31.3,oral,Invited Paper: Stable Perovskite Quantum Dots for Liquid-Crystal Displays,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/31-3.pdf,downloaded,papers\31-3.pdf,
+31-3,31.3,oral,Invited Paper: Stable Perovskite Quantum Dots for Liquid-Crystal Displays,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/31-3.pdf,corrupt,papers\31-3.pdf,EOF marker not found
 31-4,31.4,oral,Distinguished Paper: Polarized Emission Perovskite Nano Rod Enhancement Film for Advanced LCD Devices,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/31-4.pdf,downloaded,papers\31-4.pdf,
 31-5,31.5,oral,Late-News Paper: Polymer-Enhanced Cs?Cu?I? Perovskite Scintillator Films with Improved Stability and X-Ray Imaging,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/31-5.pdf,downloaded,papers\31-5.pdf,
 32-1,32.1,oral,Invited Paper: Recent Progresses in Ferroelectric Thin-Film Transistors with Oxide Semiconductor Channels,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/32-1.pdf,downloaded,papers\32-1.pdf,
-32-2,32.2,oral,A New Ferroelectric TFT Structure for Micro-LED Pixel with Pulse Width Modulation,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/32-2.pdf,downloaded,papers\32-2.pdf,
+32-2,32.2,oral,A New Ferroelectric TFT Structure for Micro-LED Pixel with Pulse Width Modulation,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/32-2.pdf,corrupt,papers\32-2.pdf,EOF marker not found
 33-1,33.1,oral,Monolithic GaN n-MOSFET-Micro-LED Integration as a Building Block for Complementary 2T1C Active-Matrix,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/33-1.pdf,downloaded,papers\33-1.pdf,
 33-2,33.2,oral,Assembly of Micro-LED Arrays via Simultaneous Transfer and Bonding (SITRAB) Technology,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/33-2.pdf,downloaded,papers\33-2.pdf,
 33-3,33.3,oral,Flexible Temperature Sensor with Colloidal Quantum Dots (CQD),7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/33-3.pdf,downloaded,papers\33-3.pdf,
-33-4,33.4,oral,Dual-side Transparent Micro LED Display,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/33-4.pdf,downloaded,papers\33-4.pdf,
+33-4,33.4,oral,Dual-side Transparent Micro LED Display,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/33-4.pdf,corrupt,papers\33-4.pdf,EOF marker not found
 34-1,34.1,oral,Development and Investigation of Printed Chip Interconnects Using the Example of MicroLED Pixels,7,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/34-1.pdf,downloaded,papers\34-1.pdf,
 34-2,34.2,oral,A Manufacturing and Simulation Technology for Light-Extraction Microstructures,8,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/34-2.pdf,downloaded,papers\34-2.pdf,
 34-3,34.3,oral,Wafer-Scale Hybrid 3D Integration of Micro-LEDs and IGZO TFTs via Simultaneous Substrate Removal and Bonding,8,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/34-3.pdf,downloaded,papers\34-3.pdf,
@@ -137,7 +137,7 @@ paper_id,raw_id,type,title,page,url,status,path,error
 36-3,36.3,oral,"Invited Paper: Unlocking MicroLED’s Potential: Next-Gen BEOL Integration for Scalable, High-Performance Displays",8,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/36-3.pdf,downloaded,papers\36-3.pdf,
 36-4,36.4,oral,Invited Paper: Direct Retinal Projection by Meta-Optic Mirror for Smart Glasses,8,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/36-4.pdf,downloaded,papers\36-4.pdf,
 36-5,36.5,oral,Late-News Paper: High-Contrast Dual-Edge Color-Sequential Front-Lit LCOS with Local Dimming Concept for AR Glasses,8,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/36-5.pdf,downloaded,papers\36-5.pdf,
-37-1,37.1,oral,A Novel Stress Model Compensation Method for OLED Panel to Solve Short Term Image Sticking,8,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/37-1.pdf,downloaded,papers\37-1.pdf,
+37-1,37.1,oral,A Novel Stress Model Compensation Method for OLED Panel to Solve Short Term Image Sticking,8,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/37-1.pdf,corrupt,papers\37-1.pdf,Broken xref table
 37-2,37.2,oral,Compensation of Anode-Reset-Induced Luminance Non-Uniformity in OLED Display,8,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/37-2.pdf,downloaded,papers\37-2.pdf,
 37-3,37.3,oral,Lifetime Compensation Scheme for Oxide Active Privacy Displays,8,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/37-3.pdf,downloaded,papers\37-3.pdf,
 38-1,38.1,oral,New Ferroelectric Liquid Crystal suitable for LCOS and SLM with Fine Pixels,8,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/38-1.pdf,downloaded,papers\38-1.pdf,
@@ -161,7 +161,7 @@ paper_id,raw_id,type,title,page,url,status,path,error
 43-1,43.1,oral,Invited Paper: Unveiling the Device Characteristics of OLEDs with the Simultaneous Measurement of the Displacement Current,9,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/43-1.pdf,downloaded,papers\43-1.pdf,
 43-2,43.2,oral,Highly Stable and High Color-Purity Blue Phosphorescent OLEDs Based on Tetradentate Pt (II) Complex,9,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/43-2.pdf,downloaded,papers\43-2.pdf,
 43-3,43.3,oral,The Mechanism of Thermal Instability in Low-Voltage OLED Capacitance Probed by Modulus Spectroscopy,9,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/43-3.pdf,downloaded,papers\43-3.pdf,
-43-4,43.4,oral,The Understanding and Improvement of Luminance Overshoot on Tandem OLED Production,10,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/43-4.pdf,downloaded,papers\43-4.pdf,
+43-4,43.4,oral,The Understanding and Improvement of Luminance Overshoot on Tandem OLED Production,10,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/43-4.pdf,corrupt,papers\43-4.pdf,EOF marker not found
 44-1,44.1,oral,Micro OLED Display Exceeding 8000 ppi Using Crystal IO FETs,10,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/44-1.pdf,downloaded,papers\44-1.pdf,
 44-2,44.2,oral,"150,000nits Full-color Native RGB Single Junction 3,386PPI Micro-OLED",10,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/44-2.pdf,downloaded,papers\44-2.pdf,
 44-3,44.3,oral,Invited Paper: High-Resolution OLED Microdisplay for Near-Eye Display Applications,10,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/44-3.pdf,downloaded,papers\44-3.pdf,
@@ -242,7 +242,7 @@ paper_id,raw_id,type,title,page,url,status,path,error
 63-2,63.2,oral,Invited Paper: The Natural Human Construction of Multiple Image Stereopsis From A Stanhope Lightfield Array to Correct,14,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/63-2.pdf,downloaded,papers\63-2.pdf,
 63-3,63.3,oral,Displays as Ambient Light Therapy: Health and Wellness Through Invisible NIR Integration,14,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/63-3.pdf,downloaded,papers\63-3.pdf,
 64-1,64.1,oral,Invited Paper: Ultra-Flexible and Breathable Electronics for Sensing Application,14,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/64-1.pdf,downloaded,papers\64-1.pdf,
-64-2,64.2,oral,Invited Paper: Electrically and Optically Programmable Neuromorphic Synapses Based on IGZO-Oxide FeTFT and Resistive,14,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/64-2.pdf,downloaded,papers\64-2.pdf,
+64-2,64.2,oral,Invited Paper: Electrically and Optically Programmable Neuromorphic Synapses Based on IGZO-Oxide FeTFT and Resistive,14,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/64-2.pdf,corrupt,papers\64-2.pdf,Broken xref table
 64-3,64.3,oral,Invited Paper: Low-Voltage Organic Thin-Film Transistors and Neuromorphic Devices Enabled by High-k Polymer Dielectrics,14,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/64-3.pdf,downloaded,papers\64-3.pdf,
 65-1,65.1,oral,Invited Paper: Beyond Image Quality: Violet-Light–Enabled Displays for Visual Health,14,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/65-1.pdf,downloaded,papers\65-1.pdf,
 65-2,65.2,oral,Eye Comfort in LED Displays: Challenges and Solutions,14,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/65-2.pdf,downloaded,papers\65-2.pdf,
@@ -266,21 +266,21 @@ paper_id,raw_id,type,title,page,url,status,path,error
 70-2,70.2,oral,High-Resolution LCOS Backplane of High Contrast Grating Achieves High Brightness Display,15,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/70-2.pdf,downloaded,papers\70-2.pdf,
 70-3,70.3,oral,Laser Beam Scanner Achieving Wide Field of View of 77 degrees by Using a Pair of Parabolic Reflective Lenses Between MEMS,15,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/70-3.pdf,downloaded,papers\70-3.pdf,
 70-4,70.4,oral,Eyebox Brightening and Expansion in AR Waveguide Devices via Polarization Multiplexing,15,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/70-4.pdf,downloaded,papers\70-4.pdf,
-71-1,71.1,oral,Invited Paper: Quantum Dot Optoelectronics for Biomedical Implants,15,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/71-1.pdf,downloaded,papers\71-1.pdf,
-71-2,71.2,oral,Invited Paper: All-Inorganic CsPbBr3 Perovskite for Next-Generation Direct X-Ray Image Sensors: A Comprehensive Review,15,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/71-2.pdf,downloaded,papers\71-2.pdf,
+71-1,71.1,oral,Invited Paper: Quantum Dot Optoelectronics for Biomedical Implants,15,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/71-1.pdf,corrupt,papers\71-1.pdf,EOF marker not found
+71-2,71.2,oral,Invited Paper: All-Inorganic CsPbBr3 Perovskite for Next-Generation Direct X-Ray Image Sensors: A Comprehensive Review,15,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/71-2.pdf,corrupt,papers\71-2.pdf,EOF marker not found
 71-3,71.3,oral,Bioinspired RBC Nanocarriers Co-Loaded with NIR Fluorophore and Paramagnetic Agent for Multimodal Imaging,15,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/71-3.pdf,downloaded,papers\71-3.pdf,
 71-4,71.4,oral,Flexible Quantum Dot Light-Emitting Diodes for Antimicrobial Photodynamic Therapy,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/71-4.pdf,downloaded,papers\71-4.pdf,
 71-5,71.5,oral,Distinguished Paper: High-Performance Flexible Conformal Quantum-Dot Light-Emitting Diodes for Photodynamic Therapy,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/71-5.pdf,downloaded,papers\71-5.pdf,
 72-1,72.1,oral,Invited Paper: A Study on Color-Sequential Tandem Driving Method for Reducing Power Consumption in Micro-LED Displays,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/72-1.pdf,downloaded,papers\72-1.pdf,
 72-2,72.2,oral,Invited Paper: Eutectic-Free MicroLED and OTFT Integration: A Scalable Solution Across Display Generations,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/72-2.pdf,downloaded,papers\72-2.pdf,
 72-3,72.3,oral,Panel: Micro-LED Displays,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/72-3.pdf,missing,papers\72-3.pdf,HTTP 404
-73-1,73.1,oral,New Trends in Circular and Sustainable Design: Green Revolution of Display Packaging,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/73-1.pdf,downloaded,papers\73-1.pdf,
+73-1,73.1,oral,New Trends in Circular and Sustainable Design: Green Revolution of Display Packaging,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/73-1.pdf,corrupt,papers\73-1.pdf,EOF marker not found
 73-2,73.2,oral,Green Packaging Material for the LCD Panel Industry Development and Application of 100% PCR EPS Eco-Friendly New,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/73-2.pdf,downloaded,papers\73-2.pdf,
 73-3,73.3,oral,Research on Simulation and Optimization of LCD Panel Splicing Box Packaging for Improving Transportation Loading Rate,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/73-3.pdf,downloaded,papers\73-3.pdf,
 74-1,74.1,oral,Control of the Shadow Mura in AMOLED Displays,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/74-1.pdf,downloaded,papers\74-1.pdf,
 74-2,74.2,oral,"A Study on Low-Brightness Color Shift and Mura in AMOLED LTPO Displays under Full DC Dimming-Challenges, Modeling,",16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/74-2.pdf,downloaded,papers\74-2.pdf,
 74-3,74.3,oral,Distinguished Paper: 8.3-inch 1058-ppi Crystal Indium Oxide Display with Side-by-side Method Using Fine Metal Mask and,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/74-3.pdf,downloaded,papers\74-3.pdf,
-75-1,75.1,oral,Invited Paper: Spontaneous Orientation Polarization in Organic Optoelectronics,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/75-1.pdf,downloaded,papers\75-1.pdf,
+75-1,75.1,oral,Invited Paper: Spontaneous Orientation Polarization in Organic Optoelectronics,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/75-1.pdf,corrupt,papers\75-1.pdf,EOF marker not found
 75-2,75.2,oral,Preventing Display Artifacts: The Advantage of Mixtures and Combinations,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/75-2.pdf,downloaded,papers\75-2.pdf,
 75-3,75.3,oral,Reflectance Differences in OLED COE Structure with Mg/Ag and Transparent Cathodes: A Comparative and Mechanistic,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/75-3.pdf,downloaded,papers\75-3.pdf,
 75-4,75.4,oral,New Simulation Software for Power- and Color-Optimized Subpixel Layouts in Advanced Display Technologies,16,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/75-4.pdf,downloaded,papers\75-4.pdf,
@@ -293,8 +293,8 @@ paper_id,raw_id,type,title,page,url,status,path,error
 77-4,77.4,oral,Dual-SLM Tiled Holographic HUD with Dammann Grating for Wide Eye-box,17,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/77-4.pdf,downloaded,papers\77-4.pdf,
 78-1,78.1,oral,Invited Paper: Real-Time Holographic Media System Using CGH Processor,17,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/78-1.pdf,downloaded,papers\78-1.pdf,
 78-2,78.2,oral,Invited Paper: Study of Human Visual Characteristics in Holographic Near-Eye Displays,17,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/78-2.pdf,downloaded,papers\78-2.pdf,
-78-3,78.3,oral,Distinguished Paper: Thin Maxwellian Virtual Reality Near-Eye Display Using Holographic Optical Element and Micro Lens,17,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/78-3.pdf,downloaded,papers\78-3.pdf,
-78-4,78.4,oral,3D Eyebox Expansion for Pupil-aware Holographic Displays via Multi-Source Illumination,17,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/78-4.pdf,downloaded,papers\78-4.pdf,
+78-3,78.3,oral,Distinguished Paper: Thin Maxwellian Virtual Reality Near-Eye Display Using Holographic Optical Element and Micro Lens,17,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/78-3.pdf,corrupt,papers\78-3.pdf,EOF marker not found
+78-4,78.4,oral,3D Eyebox Expansion for Pupil-aware Holographic Displays via Multi-Source Illumination,17,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/78-4.pdf,corrupt,papers\78-4.pdf,Broken xref table
 79-1,79.1,oral,Distinguished Paper: Perceptually Flicker-Free Transparent White OLEDs via 40 Hz Chromatic Modulation,17,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/79-1.pdf,downloaded,papers\79-1.pdf,
 79-2,79.2,oral,The OLED with an Extremely Low Proportion of Harmful Blue Light and Excellent Viewing Angle Performance,17,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/79-2.pdf,downloaded,papers\79-2.pdf,
 79-3,79.3,oral,An Universal Approach to Minimizing the Ratio of Harmful Blue Light in OLEDs by Modification of POL Structure,17,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/79-3.pdf,downloaded,papers\79-3.pdf,
@@ -308,8 +308,8 @@ paper_id,raw_id,type,title,page,url,status,path,error
 81-4,81.4,oral,Research on High-Transmittance Hidden Display of Micro LED,18,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/81-4.pdf,downloaded,papers\81-4.pdf,
 82-1,82.1,oral,Effects of the Conduction Properties of Donor Metal Plates on the Plane-Source Deposition Process of OLEDs,18,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/82-1.pdf,downloaded,papers\82-1.pdf,
 82-2,82.2,oral,Research on the Design and Application of Integrated Cover,18,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/82-2.pdf,downloaded,papers\82-2.pdf,
-82-3,82.3,oral,Invited Paper: ViP Technology for Mask Less OLED: Mass Production Readiness and Future Applications on Gen 8.6 Lines,18,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/82-3.pdf,downloaded,papers\82-3.pdf,
-83-1,83.1,oral,Accelerating Optoelectronic Innovation via Integrating Machine Learning and Physics-Based Modeling,18,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/83-1.pdf,downloaded,papers\83-1.pdf,
+82-3,82.3,oral,Invited Paper: ViP Technology for Mask Less OLED: Mass Production Readiness and Future Applications on Gen 8.6 Lines,18,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/82-3.pdf,corrupt,papers\82-3.pdf,EOF marker not found
+83-1,83.1,oral,Accelerating Optoelectronic Innovation via Integrating Machine Learning and Physics-Based Modeling,18,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/83-1.pdf,corrupt,papers\83-1.pdf,EOF marker not found
 83-2,83.2,oral,Sync-OLED–Enabled Physics-Informed AI for High-Throughput Screening of OLED Stacks,18,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/83-2.pdf,downloaded,papers\83-2.pdf,
 83-3,83.3,oral,Accelerated Inverse Design Framework for High Efficiency RGB Tandem OLEDs via Physics Embedded General Artificial,18,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/83-3.pdf,downloaded,papers\83-3.pdf,
 83-4,83.4,oral,Distinguished Paper: Enabling Next-Generation OLEDs-A Revolutionary AI-Driven Model for Geometric Optical Design,18,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/83-4.pdf,downloaded,papers\83-4.pdf,
@@ -358,11 +358,11 @@ paper_id,raw_id,type,title,page,url,status,path,error
 94-4,94.4,oral,Micro-Nano Scale Ultra-HD Low-Sparkle Anti-Glare Cover Glass,20,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/94-4.pdf,downloaded,papers\94-4.pdf,
 95-1,95.1,oral,Invited Paper: Micro-LED and Fiber Interface Design for Optical Communications,20,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/95-1.pdf,downloaded,papers\95-1.pdf,
 95-2,95.2,oral,"Angle-Stable Polariton-Based Spectral Filters for Advanced Display, Imaging, and Sensing Applications",20,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/95-2.pdf,downloaded,papers\95-2.pdf,
-95-3,95.3,oral,Ultrafast Single-Shot Full Stokes Polarization Photodetection using Quantum Dot Photodetector and Photopatterned Azo-Dye,20,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/95-3.pdf,downloaded,papers\95-3.pdf,
+95-3,95.3,oral,Ultrafast Single-Shot Full Stokes Polarization Photodetection using Quantum Dot Photodetector and Photopatterned Azo-Dye,20,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/95-3.pdf,corrupt,papers\95-3.pdf,EOF marker not found
 95-4,95.4,oral,Multi-Wavelength and Multi-Modality Programmable Microscopy Using a Liquid-Crystal Spatial Light Modulator,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/95-4.pdf,downloaded,papers\95-4.pdf,
 96-1,96.1,oral,Agent-Analytics Framework for Physics-Informed Crease Modeling in Multilayer Flexible Cover Stacks,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/96-1.pdf,downloaded,papers\96-1.pdf,
-96-2,96.2,oral,AI-Adaptive Resolution for Flexible Display Applications,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/96-2.pdf,downloaded,papers\96-2.pdf,
-96-3,96.3,oral,A Geometric Feature–based Conditional Diffusion Model for Predicting Stress and Strain Distributions in Curved OLED,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/96-3.pdf,downloaded,papers\96-3.pdf,
+96-2,96.2,oral,AI-Adaptive Resolution for Flexible Display Applications,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/96-2.pdf,corrupt,papers\96-2.pdf,EOF marker not found
+96-3,96.3,oral,A Geometric Feature–based Conditional Diffusion Model for Predicting Stress and Strain Distributions in Curved OLED,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/96-3.pdf,corrupt,papers\96-3.pdf,EOF marker not found
 96-4,96.4,oral,Two-Dimensional Pixel-Level Image-Data Analysis in an Electrochromic Nonvolatile Device,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/96-4.pdf,downloaded,papers\96-4.pdf,
 97-1,97.1,oral,Unveiling a High-Performance Solution for Micro LED Transparent Displays,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/97-1.pdf,downloaded,papers\97-1.pdf,
 97-2,97.2,oral,Transparent Borderless Micro-LED Display: Design and Manufacturing of Standard Tileable Screens,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/97-2.pdf,downloaded,papers\97-2.pdf,
@@ -372,8 +372,8 @@ paper_id,raw_id,type,title,page,url,status,path,error
 98-2,98.2,oral,TDDI-Based Charge-Sensing for Aftermarket Defect-Detection in OLED Pixel Circuit with Internal Charging Process,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/98-2.pdf,downloaded,papers\98-2.pdf,
 99-1,99.1,oral,Color Temperature Uniformity Correction for LCD Screens Based on AI and FPGA,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/99-1.pdf,downloaded,papers\99-1.pdf,
 99-2,99.2,oral,Polygon-Based Illusory Contour Segmentation and Detection for AI-Generated Content,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/99-2.pdf,downloaded,papers\99-2.pdf,
-99-3,99.3,oral,Deep Learning-Driven Robotic Process Automation for Defect Detection and Automated Repair in TFT-LCD Manufacturing,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/99-3.pdf,downloaded,papers\99-3.pdf,
-99-4,99.4,oral,AI-Driven Enhancement of MAI for LCD-Based XR Displays,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/99-4.pdf,downloaded,papers\99-4.pdf,
+99-3,99.3,oral,Deep Learning-Driven Robotic Process Automation for Defect Detection and Automated Repair in TFT-LCD Manufacturing,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/99-3.pdf,corrupt,papers\99-3.pdf,Broken xref table
+99-4,99.4,oral,AI-Driven Enhancement of MAI for LCD-Based XR Displays,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/99-4.pdf,corrupt,papers\99-4.pdf,EOF marker not found
 100-1,100.1,oral,Invited Paper: Binocular Stereo Measurements of 3D Spatial Accuracy on Video See-Through Head-Mounted Displays,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/100-1.pdf,downloaded,papers\100-1.pdf,
 100-2,100.2,oral,Invited Paper: Spatiotemporal Tracking Accuracy of Marker-Based Registration Using Augmented Reality Head Mounted,21,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/100-2.pdf,downloaded,papers\100-2.pdf,
 101-1,101.1,oral,Integrated Circuit-3D Electromagnetic Simulation Framework for Joule-Heating Sensitivity Analysis in Narrow-Border OLED,22,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/101-1.pdf,downloaded,papers\101-1.pdf,
@@ -413,7 +413,7 @@ paper_id,raw_id,type,title,page,url,status,path,error
 109-3,109.3,oral,Ultra-Low Interactive Latency with Frameless Render-Display Integration,23,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/109-3.pdf,downloaded,papers\109-3.pdf,
 110-1,110.1,oral,Invited Paper: A High-Performance Display Scheme for VR Module,23,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/110-1.pdf,downloaded,papers\110-1.pdf,
 110-2,110.2,oral,Invited Paper: Key Issues of AR Waveguide Glasses,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/110-2.pdf,downloaded,papers\110-2.pdf,
-110-3,110.3,oral,Multicoated-Layer and Multi-Layer SRGs for Single-Waveguide Full-Color Augmented Reality Displays,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/110-3.pdf,downloaded,papers\110-3.pdf,
+110-3,110.3,oral,Multicoated-Layer and Multi-Layer SRGs for Single-Waveguide Full-Color Augmented Reality Displays,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/110-3.pdf,corrupt,papers\110-3.pdf,EOF marker not found
 111-1,111.1,oral,Invited Paper: Unprecedented Stretchable High-Resolution Micro-LED Display Achieves Successful Mechanical Testing,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/111-1.pdf,downloaded,papers\111-1.pdf,
 111-2,111.2,oral,Invited Paper: Highly Stretchable Deformable Displays Enabled by Liquid Metal Integration,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/111-2.pdf,downloaded,papers\111-2.pdf,
 111-3,111.3,oral,"Invited Paper: Stretchable, High-Efficiency OLED",24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/111-3.pdf,downloaded,papers\111-3.pdf,
@@ -423,7 +423,7 @@ paper_id,raw_id,type,title,page,url,status,path,error
 112-2,112.2,oral,"3D Nanowire MicroLED Technology for High-Efficiency, High-Brightness, and Low-Cost AR Displays",24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/112-2.pdf,downloaded,papers\112-2.pdf,
 112-3,112.3,oral,Scaling Rules of Nanowire LEDs and microLEDs,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/112-3.pdf,downloaded,papers\112-3.pdf,
 112-4,112.4,oral,High-Performance GaN Nanorod-Array LED Chips for Micro-LED Displays,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/112-4.pdf,downloaded,papers\112-4.pdf,
-113-1,113.1,oral,Distinguished Paper: Differential-Driven MHz-Range High-Voltage Ultrasound 2D Beamsteering 50.4cm2 Imaging Cardiac,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/113-1.pdf,downloaded,papers\113-1.pdf,
+113-1,113.1,oral,Distinguished Paper: Differential-Driven MHz-Range High-Voltage Ultrasound 2D Beamsteering 50.4cm2 Imaging Cardiac,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/113-1.pdf,corrupt,papers\113-1.pdf,EOF marker not found
 113-2,113.2,oral,Evolution In IGZO TFT-Based TCAP Fingerprint Sensing Technology,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/113-2.pdf,downloaded,papers\113-2.pdf,
 113-3,113.3,oral,Reset-and-Correlated Double Sampling Low Noise oxide TFT Active Pixel Circuit for Dynamic X-Ray Imging,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/113-3.pdf,downloaded,papers\113-3.pdf,
 113-4,113.4,oral,Invited Paper: The Process and Technology Development of Large-size Ultrasonic Fingerprint Sensor,24,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/113-4.pdf,downloaded,papers\113-4.pdf,
@@ -440,7 +440,7 @@ paper_id,raw_id,type,title,page,url,status,path,error
 116-2,116.2,oral,Design of a High Efficiency Backlight System for ARHUD,25,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/116-2.pdf,downloaded,papers\116-2.pdf,
 116-3,116.3,oral,Low Cost MLED Direct Back Lights for High-end Liquid Crystal Displays,25,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/116-3.pdf,downloaded,papers\116-3.pdf,
 116-4,116.4,oral,An Ultra-Low Power Consumption Glass-based Direct Micro-LED Backlight and LCD System,25,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/116-4.pdf,downloaded,papers\116-4.pdf,
-117-1,117.1,oral,Invited Paper: Hybrid Scan: A Multi-Viewer True-Perspective Strong Parallax Display With Algorithmicly Controlled,25,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/117-1.pdf,downloaded,papers\117-1.pdf,
+117-1,117.1,oral,Invited Paper: Hybrid Scan: A Multi-Viewer True-Perspective Strong Parallax Display With Algorithmicly Controlled,25,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/117-1.pdf,corrupt,papers\117-1.pdf,EOF marker not found
 117-2,117.2,oral,Distinguished Paper: Light-Controlled Polarization Volume Grating via Liquid Crystal Elastomer Actuation,25,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/117-2.pdf,downloaded,papers\117-2.pdf,
 117-3,117.3,oral,Wide-Viewing Multi-Projection Light Field Display using Holographic Directional Diffuser,25,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/117-3.pdf,downloaded,papers\117-3.pdf,
 117-4,117.4,oral,Angular-Insensitive Multi-Wavelength Bandpass Filters with Simple Layer Structure for Advanced Display and Sensor,25,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/117-4.pdf,downloaded,papers\117-4.pdf,
@@ -457,15 +457,15 @@ P-6,P..6,poster,Key Parameters for Controlling Electrical Properties of Dual-gat
 P-8,P..8,poster,Threshold Voltage Reversal Induced by Competation between Vacancy Diffusion and Passivation in Downscaled InGaO Thin-,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-8.pdf,downloaded,posters\P-8.pdf,
 P-9,P..9,poster,A Novel Ultra Wide Variable Refresh Rate without Band Mura Pixel Circuit for 14-inch 2.8K OLED Display,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-9.pdf,downloaded,posters\P-9.pdf,
 P-10,P..10,poster,Frequency-Dependent Stability of Oxide TFTs under Gate Pulse Bias,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-10.pdf,downloaded,posters\P-10.pdf,
-P-11,P..11,poster,Distinguished Poster: High-Mobility Indium Gallium Oxide TFTs Fabricated from an Aqueous Precursor with Excimer-Light,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-11.pdf,downloaded,posters\P-11.pdf,
-P-12,P..12,poster,Improving the Large-Area Uniformity and Performance of a-IGZO Vertical TFTs,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-12.pdf,downloaded,posters\P-12.pdf,
-P-13,P..13,poster,Engineering Hydrogen- Supplying Interlayers for In-Situ Passivation toward Top-Gate Self-Aligned ALD Indium-Based Oxide,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-13.pdf,downloaded,posters\P-13.pdf,
+P-11,P..11,poster,Distinguished Poster: High-Mobility Indium Gallium Oxide TFTs Fabricated from an Aqueous Precursor with Excimer-Light,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-11.pdf,corrupt,posters\P-11.pdf,EOF marker not found
+P-12,P..12,poster,Improving the Large-Area Uniformity and Performance of a-IGZO Vertical TFTs,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-12.pdf,corrupt,posters\P-12.pdf,EOF marker not found
+P-13,P..13,poster,Engineering Hydrogen- Supplying Interlayers for In-Situ Passivation toward Top-Gate Self-Aligned ALD Indium-Based Oxide,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-13.pdf,corrupt,posters\P-13.pdf,EOF marker not found
 P-14,P..14,poster,Thermally Robust 1-µm-Channel Oxide TFTs Enabled by Selective Incorporation of a Highly Conductive Oxide Layer,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-14.pdf,downloaded,posters\P-14.pdf,
 P-15,P..15,poster,"Transparent, Hysteresis-Free Complementary Inverters Using p-Channel SWNT and n-Channel IGZO TFTs for Light-to-",26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-15.pdf,downloaded,posters\P-15.pdf,
 P-16,P..16,poster,A Multi-Scan Module Circuit with High Mobility Poly-Oxide TFTs for High Resolution AMOLED Display over 1500 ppi,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-16.pdf,downloaded,posters\P-16.pdf,
 P-17,P..17,poster,Compact Emission Gate Driver for Narrow-Bezel Displays,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-17.pdf,downloaded,posters\P-17.pdf,
 P-18,P..18,poster,Polycrystalline Oxide TFT-Based AMOLED Pixel Circuit for 1494-ppi AR and VR Applications,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-18.pdf,downloaded,posters\P-18.pdf,
-P-19,P..19,poster,Accurate Mixed-Mode Simulation for OLED Short-Term Image Sticking Verification and Optimization,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-19.pdf,downloaded,posters\P-19.pdf,
+P-19,P..19,poster,Accurate Mixed-Mode Simulation for OLED Short-Term Image Sticking Verification and Optimization,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-19.pdf,corrupt,posters\P-19.pdf,EOF marker not found
 P-20,P..20,poster,Multi-Slope Ramp PWM to Extend the Lower Gray Limit for Target LED Current and Improve Robustness to TFT Threshold,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-20.pdf,downloaded,posters\P-20.pdf,
 P-21,P..21,poster,Studies On a-IGZO TFTs Reliability with Different Light-Shielding-Layer Size for Improvement of Short Channel Device in,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-21.pdf,downloaded,posters\P-21.pdf,
 P-22,P..22,poster,High Performance Ultra-thin InGaO TFTs by Spray Pyrolysis for Low-Cost Display Electronics,26,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-22.pdf,downloaded,posters\P-22.pdf,
@@ -487,8 +487,8 @@ P-31,P..31,poster,Study on Improving OLED Screen Backside Impact Resistance,27,h
 P-32,P..32,poster,Folding New Material UFG Structural Design and Its Enhancement to Module Performance,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-32.pdf,downloaded,posters\P-32.pdf,
 P-33,P..33,poster,Process-Induced Structural Defects and the Crack Propensity in Flexible OLED Panels,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-33.pdf,downloaded,posters\P-33.pdf,
 P-34,P..34,poster,Study on the Variation of Adhesion Between Flexible Display Covers and Ink Over Time,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-34.pdf,downloaded,posters\P-34.pdf,
-P-35,P..35,poster,Bending Failure Mechanism of Carbon Fiber BKT in Flexible Displays,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-35.pdf,downloaded,posters\P-35.pdf,
-P-36,P..36,poster,Just-Noticeable-Chromaticity-Difference in Low Luminance Conditions,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-36.pdf,downloaded,posters\P-36.pdf,
+P-35,P..35,poster,Bending Failure Mechanism of Carbon Fiber BKT in Flexible Displays,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-35.pdf,corrupt,posters\P-35.pdf,EOF marker not found
+P-36,P..36,poster,Just-Noticeable-Chromaticity-Difference in Low Luminance Conditions,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-36.pdf,corrupt,posters\P-36.pdf,EOF marker not found
 P-37,P..37,poster,Quantitative Evaluation of Monocular Depth Perception in 2D Displays,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-37.pdf,downloaded,posters\P-37.pdf,
 P-38,P..38,poster,Linking Spectroradiometric Characterisation to User Colour Matches in an Optical See-Through AR Display: A PLVC Study on,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-38.pdf,downloaded,posters\P-38.pdf,
 P-39,P..39,poster,Improved CW-SSIM for Assessing See-Through Image Quality in Transparent Displays Across Varying Spatial Resolutions,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-39.pdf,downloaded,posters\P-39.pdf,
@@ -506,7 +506,7 @@ P-51,P..51,poster,Enhancing Perceptual Quality on High-Resolution Displays: A Un
 P-52,P..52,poster,Distinguished Poster: XStreamVGGT: Extremely Memory-Efficient Streaming Vision Geometry Grounded Transformer with,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-52.pdf,downloaded,posters\P-52.pdf,
 P-53,P..53,poster,A Small-Dataset-Driven Framework for Inkjet-Printed Quantum Dot Color Conversion Layers Powered by Random Forest and,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-53.pdf,downloaded,posters\P-53.pdf,
 P-54,P..54,poster,Accurate Non-Invasive Blood Glucose Prediction Using Dual Long-Wavelength PPG Signals at 1480 nm and 1640 nm with,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-54.pdf,downloaded,posters\P-54.pdf,
-P-242,P..242,poster,Distinguished Poster: Deep Optical Cryptography: Joint Encryption and LC-Lens Key Generation for Secure Displays,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-242.pdf,downloaded,posters\P-242.pdf,
+P-242,P..242,poster,Distinguished Poster: Deep Optical Cryptography: Joint Encryption and LC-Lens Key Generation for Secure Displays,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-242.pdf,corrupt,posters\P-242.pdf,EOF marker not found
 P-250,P..250,poster,Late-News Poster: Structural Optimization of Lightweight Super-Resolution for Micro Via-hole Detection in Industrial Display,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-250.pdf,downloaded,posters\P-250.pdf,
 P-251,P..251,poster,Late-News Poster: Optical Lens Design Engines Based on Advanced Algorithms,27,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-251.pdf,downloaded,posters\P-251.pdf,
 P-252,P..252,poster,Late-News Poster: Research on Enhancement of Data Query for Display Manufacturing Based on Multi-Agent Technology,28,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-252.pdf,downloaded,posters\P-252.pdf,
@@ -522,7 +522,7 @@ P-56,P..56,poster,A Micro-LED Based Pixel-Level Optical System: Design and Integ
 P-57,P..57,poster,Research on Visibility Phenomena Induced by Anode Surface Non-Flatness,28,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-57.pdf,downloaded,posters\P-57.pdf,
 P-58,P..58,poster,Reducing Attentional Capture in Automotive Head-Up Displays Using Image Distance and Lateral Offset,28,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-58.pdf,downloaded,posters\P-58.pdf,
 P-59,P..59,poster,Research on Temperature Rise Reduction of Ultra-Thin and High Brightness COB Module for Vehicular MLED Display,28,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-59.pdf,downloaded,posters\P-59.pdf,
-P-60,P..60,poster,Thin Actuator for Automotive Haptic Displays,28,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-60.pdf,downloaded,posters\P-60.pdf,
+P-60,P..60,poster,Thin Actuator for Automotive Haptic Displays,28,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-60.pdf,corrupt,posters\P-60.pdf,EOF marker not found
 P-61,P..61,poster,Research on Optical Performance Non-Uniformity of Flexible OLED Automotive Displays under Bending Stress,28,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-61.pdf,downloaded,posters\P-61.pdf,
 P-62,P..62,poster,Integrating Mixed-Criticality Display Technologies for the Enhancement of Large Area Displays in Fighter Cockpits,28,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-62.pdf,downloaded,posters\P-62.pdf,
 P-63,P..63,poster,Research on Panel Design and Temperature Calculation Based on Aluminum-based Composite Metal Temperature Sensor,28,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-63.pdf,downloaded,posters\P-63.pdf,
@@ -564,8 +564,8 @@ P-98,P..98,poster,Study on Dispersion Optimization of Pigment R177 and Its Appli
 P-99,P..99,poster,Stress-Induced Birefringence Measurement for Crack Detection in Bessel Beam Laser-Drilled Glass,29,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-99.pdf,downloaded,posters\P-99.pdf,
 P-100,P..100,poster,Half-Tone Patterning of Functional BPDL for OLED Panel Display Application,29,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-100.pdf,downloaded,posters\P-100.pdf,
 P-101,P..101,poster,Improving Dispersion Phenomenon in CFOT Technology for Always-Off Display Visual Effects,29,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-101.pdf,downloaded,posters\P-101.pdf,
-P-102,P..102,poster,A New Solution for Rapid in Situ Identification of TFE Peeling Risks and Effectiveness of Failure Improvement,29,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-102.pdf,downloaded,posters\P-102.pdf,
-P-103,P..103,poster,Detection of Defective Micro-LEDs via Array-Level Electroluminescence Using a Probe Wafer,29,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-103.pdf,downloaded,posters\P-103.pdf,
+P-102,P..102,poster,A New Solution for Rapid in Situ Identification of TFE Peeling Risks and Effectiveness of Failure Improvement,29,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-102.pdf,corrupt,posters\P-102.pdf,EOF marker not found
+P-103,P..103,poster,Detection of Defective Micro-LEDs via Array-Level Electroluminescence Using a Probe Wafer,29,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-103.pdf,corrupt,posters\P-103.pdf,EOF marker not found
 P-104,P..104,poster,Category-Aware Adaptive Masking for Industrial Anomaly Detection,29,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-104.pdf,downloaded,posters\P-104.pdf,
 P-105,P..105,poster,The Role of Optical Coatings in Display Technologies for Augmented Reality,29,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-105.pdf,downloaded,posters\P-105.pdf,
 P-106,P..106,poster,A Novel Method for Edge Strength Evaluation of Cover Glass for In-Vehicle Displays,29,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-106.pdf,downloaded,posters\P-106.pdf,
@@ -587,11 +587,11 @@ P-121,P..121,poster,Quantitative Metrics for the Impact of Polarizer Surface Tre
 P-122,P..122,poster,Random Depolarization Film for Reducing Birefringence-Induced Color Degradation in Displays,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-122.pdf,downloaded,posters\P-122.pdf,
 P-123,P..123,poster,Moiré-Enabled Light Shaping in the High-Efficiency Backlight,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-123.pdf,downloaded,posters\P-123.pdf,
 P-124,P..124,poster,A High-Efficiency MNT Based on a Dual Prism Architecture,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-124.pdf,downloaded,posters\P-124.pdf,
-P-125,P..125,poster,A Multi-Zone Edge-Lit Backlight Module Design Scheme for Improving Screen Refresh Rate,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-125.pdf,downloaded,posters\P-125.pdf,
-P-126,P..126,poster,Application of 8.1 Gbps High-Speed Signals in High-Resolution VR Panels,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-126.pdf,downloaded,posters\P-126.pdf,
+P-125,P..125,poster,A Multi-Zone Edge-Lit Backlight Module Design Scheme for Improving Screen Refresh Rate,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-125.pdf,corrupt,posters\P-125.pdf,EOF marker not found
+P-126,P..126,poster,Application of 8.1 Gbps High-Speed Signals in High-Resolution VR Panels,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-126.pdf,corrupt,posters\P-126.pdf,EOF marker not found
 P-127,P..127,poster,A High-Resolution Light Field 3D Display Based on Asymmetrical Compound Lenticular Lens Array,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-127.pdf,downloaded,posters\P-127.pdf,
 P-128,P..128,poster,A Hyper-Immersive Autostereoscopic Display System Based on a 57-inch Curved Ultrawide Display,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-128.pdf,downloaded,posters\P-128.pdf,
-P-129,P..129,poster,An Adaptive Demura Parameter Compensation Scheme Based on Deep Learning,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-129.pdf,downloaded,posters\P-129.pdf,
+P-129,P..129,poster,An Adaptive Demura Parameter Compensation Scheme Based on Deep Learning,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-129.pdf,corrupt,posters\P-129.pdf,startxref not found
 P-130,P..130,poster,Involuntary Pixel Compensation Algorithm for Display Image Quality,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-130.pdf,downloaded,posters\P-130.pdf,
 P-131,P..131,poster,Correcting Non-Uniform Brightness in Images Using a Multi-Region Gamma Correction Approach,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-131.pdf,downloaded,posters\P-131.pdf,
 P-132,P..132,poster,A Compensation Method for Color Uniformity of AMOLED Display Modules,30,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-132.pdf,downloaded,posters\P-132.pdf,
@@ -641,7 +641,7 @@ P-270,P..270,poster,Late-News Poster: Identification of the Primary Degradation 
 P-271,P..271,poster,Late-News Poster: Directional Light Enhancement for Quantum-Dot-Based Color-Conversion Micro-Displays,32,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-271.pdf,downloaded,posters\P-271.pdf,
 P-272,P..272,poster,"Late-News Poster: WUXGA Micro-LED Backplane Derived from an Existing OLED Microdisplay–Design Aspects,",32,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-272.pdf,downloaded,posters\P-272.pdf,
 P-273,P..273,poster,Interfacial Engineering With Tunable CQD Interlayers for Dark-Current-Suppressed InAs SWIR Photodetectors,32,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-273.pdf,downloaded,posters\P-273.pdf,
-P-171,P..171,poster,A Study on the Relationship between Display Layer Structure and the Attenuation of Under-Display Ultrasonic Fingerprint,32,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-171.pdf,downloaded,posters\P-171.pdf,
+P-171,P..171,poster,A Study on the Relationship between Display Layer Structure and the Attenuation of Under-Display Ultrasonic Fingerprint,32,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-171.pdf,corrupt,posters\P-171.pdf,Broken xref table
 P-172,P..172,poster,Research on Stability Improvement of Integrated Ambient Light Sensors,32,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-172.pdf,downloaded,posters\P-172.pdf,
 P-173,P..173,poster,A Novel Algorithmic Approach Using Machine Learning to Enhance Proximity Detection,32,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-173.pdf,downloaded,posters\P-173.pdf,
 P-174,P..174,poster,Analysis and Suppression of Diffraction Effects in Under Display Cameras Based on Pixel Arrangement Optimization,32,https://sid.org/Portals/5/pdf/SID-Digest/DW2026/docs/P-174.pdf,downloaded,posters\P-174.pdf,

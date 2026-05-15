@@ -16,7 +16,7 @@ import webbrowser
 
 import httpx
 
-from sid_paper_downloader.downloader import _validate_response, is_pdf_file, verify_downloads
+from sid_paper_downloader.downloader import _validate_response, validate_pdf_file, verify_downloads
 from sid_paper_downloader.library_exporter import export_library
 from sid_paper_downloader.manifest import ManifestRow, read_manifest, write_manifest
 
@@ -121,6 +121,8 @@ def _make_handler(state: ControlState) -> type[BaseHTTPRequestHandler]:
                 return
             if self.path == "/api/verify":
                 valid, invalid = verify_downloads(state.downloads_dir)
+                _sync_rows_with_downloads(state.rows, state.downloads_dir)
+                write_manifest(state.manifest_path, state.rows)
                 self._send_json({"valid": len(valid), "invalid": len(invalid), "invalid_paths": [str(path) for path in invalid]})
                 return
             self.send_error(HTTPStatus.NOT_FOUND)
@@ -241,7 +243,9 @@ def _download_worker(
                     state.message = f"Downloading {row.paper_id}"
                 target = _target_path(state.downloads_dir, row)
                 if target.exists() and target.stat().st_size > 0 and not force:
-                    _mark_row(row, state.downloads_dir, "downloaded")
+                    pdf_result = validate_pdf_file(target)
+                    status = "downloaded" if pdf_result.valid else "corrupt"
+                    _mark_row(row, state.downloads_dir, status, "" if pdf_result.valid else pdf_result.error)
                     write_manifest(state.manifest_path, state.rows)
                     with state.lock:
                         state.skipped += 1
@@ -252,8 +256,15 @@ def _download_worker(
                     response = client.get(row.url)
                     _validate_response(response)
                     target.write_bytes(response.content)
-                    if not is_pdf_file(target):
-                        raise RuntimeError("Downloaded content does not start with %PDF-")
+                    pdf_result = validate_pdf_file(target)
+                    if not pdf_result.valid:
+                        _mark_row(row, state.downloads_dir, "corrupt", pdf_result.error)
+                        write_manifest(state.manifest_path, state.rows)
+                        with state.lock:
+                            state.failed += 1
+                            state.processed += 1
+                            state.last_error = f"{row.paper_id}: {pdf_result.error}"
+                        continue
                     _mark_row(row, state.downloads_dir, "downloaded")
                     write_manifest(state.manifest_path, state.rows)
                     with state.lock:
@@ -311,7 +322,7 @@ def _select_rows(
         if item_type in {"oral", "poster"} and row.item_type != item_type:
             continue
         status = _effective_status(row, downloads_dir)
-        if status_filter in {"downloaded", "missing", "untried"} and status != status_filter:
+        if status_filter in {"downloaded", "missing", "untried", "corrupt"} and status != status_filter:
             continue
         selected.append(row)
     return selected
@@ -350,8 +361,10 @@ def _sync_rows_with_downloads(rows: list[ManifestRow], downloads_dir: Path) -> N
     for row in rows:
         target = _target_path(downloads_dir, row)
         if target.exists() and target.stat().st_size > 0:
-            _mark_row(row, downloads_dir, "downloaded")
-        elif row.status not in {"missing"}:
+            pdf_result = validate_pdf_file(target)
+            status = "downloaded" if pdf_result.valid else "corrupt"
+            _mark_row(row, downloads_dir, status, "" if pdf_result.valid else pdf_result.error)
+        elif row.status not in {"missing", "corrupt"}:
             _mark_row(row, downloads_dir, "untried")
 
 
@@ -364,9 +377,9 @@ def _mark_row(row: ManifestRow, downloads_dir: Path, status: str, error: str = "
 def _effective_status(row: ManifestRow, downloads_dir: Path) -> str:
     target = _target_path(downloads_dir, row)
     if target.exists() and target.stat().st_size > 0:
-        return "downloaded"
-    if row.status == "missing":
-        return "missing"
+        return "downloaded" if validate_pdf_file(target).valid else "corrupt"
+    if row.status in {"missing", "corrupt"}:
+        return row.status
     return "untried"
 
 
@@ -419,6 +432,7 @@ def _control_html() -> str:
     .badge { display:inline-flex; align-items:center; min-height:24px; border-radius:999px; padding:2px 8px; font-size:12px; font-weight:700; }
     .ok { color:#137047; background:#e7f6ef; }
     .missing { color:#9a4b00; background:#fff3df; }
+    .corrupt { color:#9f1239; background:#ffe4e6; }
     .untried { color:#475467; background:#eef2f7; }
     .pdfLink { color:#115e59; font-weight:700; text-decoration:none; }
     .pdfLink:hover { text-decoration:underline; }
@@ -445,7 +459,7 @@ def _control_html() -> str:
   <section class="toolbar">
     <label class="search"><span>Search</span><input id="search" type="search" placeholder="ID or title"></label>
     <label><span>Type</span><select id="type"><option value="all">All</option><option value="oral">Oral</option><option value="poster">Poster</option></select></label>
-    <label><span>Status</span><select id="status"><option value="all">All</option><option value="untried">Untried</option><option value="missing">Missing</option><option value="downloaded">Downloaded</option></select></label>
+    <label><span>Status</span><select id="status"><option value="all">All</option><option value="untried">Untried</option><option value="missing">Missing</option><option value="corrupt">Corrupt</option><option value="downloaded">Downloaded</option></select></label>
     <label><span>Sort</span><select id="sort"><option value="program">Program order</option><option value="id">ID</option><option value="title">Title</option><option value="size">File size</option></select></label>
     <label><span>Delay min</span><input id="delayMin" type="number" min="0" step="0.1" value="0.2"></label>
     <label><span>Delay max</span><input id="delayMax" type="number" min="0" step="0.1" value="0.6"></label>
@@ -463,6 +477,7 @@ def _control_html() -> str:
     <div><strong id="selected">0</strong><span>Selected</span></div>
     <div><strong id="downloaded">0</strong><span>Downloaded</span></div>
     <div><strong id="missing">0</strong><span>Missing</span></div>
+    <div><strong id="corrupt">0</strong><span>Corrupt</span></div>
     <div><strong id="untried">0</strong><span>Untried</span></div>
     <div><strong id="files">0</strong><span>Files</span></div>
   </section>
@@ -539,11 +554,13 @@ function render() {
   const visible = filtered();
   const downloaded = items.filter((item) => item.downloaded).length;
   const missing = items.filter((item) => item.status === "missing").length;
+  const corrupt = items.filter((item) => item.status === "corrupt").length;
   const untried = items.filter((item) => item.status === "untried").length;
   $("visible").textContent = visible.length;
   $("selected").textContent = chosen.size;
   $("downloaded").textContent = downloaded;
   $("missing").textContent = missing;
+  $("corrupt").textContent = corrupt;
   $("untried").textContent = untried;
   $("rows").innerHTML = visible.map((item) => {
     const checked = chosen.has(item.paper_id) ? "checked" : "";
@@ -551,7 +568,9 @@ function render() {
       ? `<span class="badge ok">Downloaded</span>`
       : item.status === "missing"
         ? `<span class="badge missing">Missing</span>`
-        : `<span class="badge untried">Untried</span>`;
+        : item.status === "corrupt"
+          ? `<span class="badge corrupt">Corrupt</span>`
+          : `<span class="badge untried">Untried</span>`;
     const size = item.downloaded ? ` <span class="fileSize">· ${formatBytes(item.size_bytes)}</span>` : "";
     const pdf = item.downloaded
       ? `<a class="pdfLink" href="${escapeHtml(item.local_path)}" target="_blank">Open</a>`

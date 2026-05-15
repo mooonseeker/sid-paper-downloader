@@ -5,13 +5,18 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from pathlib import Path
 import json
+import logging
 import random
 import time
 
 import httpx
+from pypdf import PdfReader
 
 from sid_paper_downloader.auth import add_storage_state_cookies
 from sid_paper_downloader.manifest import ManifestRow
+
+
+logging.getLogger("pypdf").setLevel(logging.ERROR)
 
 
 @dataclass(frozen=True)
@@ -22,6 +27,14 @@ class DownloadSummary:
     downloaded: int
     skipped: int
     failed: int
+
+
+@dataclass(frozen=True)
+class PdfValidationResult:
+    """Structured result for local PDF integrity checks."""
+
+    valid: bool
+    error: str = ""
 
 
 def download_rows(
@@ -64,8 +77,9 @@ def download_rows(
             target = _target_path(output_dir, row)
             row.path = str(target)
             if target.exists() and target.stat().st_size > 0 and not force:
-                row.status = "skipped"
-                row.error = ""
+                pdf_result = validate_pdf_file(target)
+                row.status = "skipped" if pdf_result.valid else "corrupt"
+                row.error = "" if pdf_result.valid else pdf_result.error
                 skipped += 1
                 continue
 
@@ -74,9 +88,10 @@ def download_rows(
                 response = client.get(row.url)
                 _validate_response(response)
                 target.write_bytes(response.content)
-                if not is_pdf_file(target):
-                    row.status = "invalid_pdf"
-                    row.error = "Downloaded content does not start with %PDF-"
+                pdf_result = validate_pdf_file(target)
+                if not pdf_result.valid:
+                    row.status = "corrupt" if is_pdf_file(target) else "invalid_pdf"
+                    row.error = pdf_result.error
                     failed += 1
                     continue
                 row.status = "downloaded"
@@ -101,7 +116,7 @@ def verify_downloads(root: Path) -> tuple[list[Path], list[Path]]:
     valid: list[Path] = []
     invalid: list[Path] = []
     for path in root.rglob("*.pdf"):
-        if is_pdf_file(path):
+        if validate_pdf_file(path).valid:
             valid.append(path)
         else:
             invalid.append(path)
@@ -122,6 +137,23 @@ def is_pdf_file(path: Path) -> bool:
     """Check whether a file starts with a PDF header."""
     with path.open("rb") as handle:
         return handle.read(5) == b"%PDF-"
+
+
+def validate_pdf_file(path: Path) -> PdfValidationResult:
+    """Check whether a local file is a parseable PDF, not just PDF-looking bytes."""
+    if not is_pdf_file(path):
+        return PdfValidationResult(valid=False, error="File does not start with %PDF-")
+    try:
+        reader = PdfReader(path, strict=True)
+        page_count = len(reader.pages)
+        if page_count == 0:
+            return PdfValidationResult(valid=False, error="PDF contains no pages")
+        # Force pypdf to resolve at least one page object. Some broken placeholders
+        # have a valid header but fail when the cross-reference table is read.
+        _ = reader.pages[0]
+    except Exception as exc:  # noqa: BLE001
+        return PdfValidationResult(valid=False, error=str(exc))
+    return PdfValidationResult(valid=True)
 
 
 def _target_path(output_dir: Path, row: ManifestRow) -> Path:

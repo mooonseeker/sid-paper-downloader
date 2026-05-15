@@ -8,7 +8,7 @@ import typer
 
 from sid_paper_downloader.auth import SID_APP_URL, save_login_state
 from sid_paper_downloader.control_server import serve_control_ui
-from sid_paper_downloader.downloader import download_rows, verify_downloads, write_report
+from sid_paper_downloader.downloader import download_rows, validate_pdf_file, verify_downloads, write_report
 from sid_paper_downloader.library_exporter import export_library as export_library_html
 from sid_paper_downloader.manifest import ManifestRow, read_manifest, rows_from_program_items, write_manifest
 from sid_paper_downloader.program_parser import extract_session_topics, parse_program_pdf
@@ -87,9 +87,16 @@ def download(
 @app.command()
 def verify(
     root: Path = typer.Argument(Path("downloads"), exists=True, file_okay=False, readable=True),
+    manifest: Path | None = typer.Option(None, "--manifest", help="Manifest CSV to update with corrupt/downloaded status."),
+    write_status: bool = typer.Option(True, "--write-status/--no-write-status", help="Update manifest when --manifest is provided."),
 ) -> None:
-    """Verify downloaded files by checking their PDF header."""
+    """Verify downloaded files by parsing PDF structure."""
     valid, invalid = verify_downloads(root)
+    if manifest is not None and write_status:
+        rows = read_manifest(manifest)
+        _sync_manifest_with_pdf_validation(rows, root)
+        write_manifest(manifest, rows)
+        typer.echo(f"Updated manifest status in {manifest}.")
     typer.echo(f"Valid PDFs: {len(valid)}")
     typer.echo(f"Invalid PDFs: {len(invalid)}")
     if invalid:
@@ -145,3 +152,21 @@ def _filter_rows(
         and (not requested_ids or row.paper_id.upper() in requested_ids)
     ]
     return filtered[:limit] if limit is not None else filtered
+
+
+def _sync_manifest_with_pdf_validation(rows: list[ManifestRow], downloads_dir: Path) -> None:
+    for row in rows:
+        target = _download_path(downloads_dir, row)
+        row.path = str(target.relative_to(downloads_dir))
+        if target.exists() and target.stat().st_size > 0:
+            result = validate_pdf_file(target)
+            row.status = "downloaded" if result.valid else "corrupt"
+            row.error = "" if result.valid else result.error
+        elif row.status != "missing":
+            row.status = "untried"
+            row.error = ""
+
+
+def _download_path(downloads_dir: Path, row: ManifestRow) -> Path:
+    subdir = "posters" if row.paper_id.startswith("P-") else "papers"
+    return downloads_dir / subdir / f"{row.paper_id}.pdf"
