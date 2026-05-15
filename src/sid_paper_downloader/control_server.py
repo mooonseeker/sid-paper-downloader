@@ -392,6 +392,7 @@ def _control_html() -> str:
     .ok { color:#137047; background:#e7f6ef; }
     .missing { color:#9a4b00; background:#fff3df; }
     .untried { color:#475467; background:#eef2f7; }
+    .paperKind { color:#b42318; font-weight:700; }
     .log { min-height:24px; color:var(--muted); }
     @media (max-width:760px) { main { width:min(100% - 20px, 1500px); } header { flex-direction:column; align-items:stretch; } .stats div { flex-basis:45%; } }
   </style>
@@ -494,7 +495,7 @@ function render() {
       <td class="choose"><input type="checkbox" data-id="${escapeHtml(item.paper_id)}" ${checked}></td>
       <td class="id">${escapeHtml(item.paper_id)}</td>
       <td class="type">${escapeHtml(item.type)}</td>
-      <td>${escapeHtml(item.title)}</td>
+      <td>${formatTitle(item.title)}</td>
       <td class="page">${item.page}</td>
       <td class="state">${status}</td>
     </tr>`;
@@ -509,6 +510,12 @@ function render() {
 
 function escapeHtml(value) {
   return String(value).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+}
+
+function formatTitle(title) {
+  const match = String(title).match(/^(Invited Paper:|Distinguished Paper:)\s*(.*)$/);
+  if (!match) return escapeHtml(title);
+  return `<span class="paperKind">${escapeHtml(match[1])}</span> ${escapeHtml(match[2])}`;
 }
 
 async function loadManifest() {

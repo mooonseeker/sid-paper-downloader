@@ -478,6 +478,11 @@ a.pdfLink:hover {
   white-space: nowrap;
 }
 
+.paperKind {
+  color: #b42318;
+  font-weight: 700;
+}
+
 .empty {
   padding: 26px 12px;
   color: var(--muted);
@@ -588,6 +593,12 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function formatTitle(title) {
+  const match = String(title).match(/^(Invited Paper:|Distinguished Paper:)\s*(.*)$/);
+  if (!match) return escapeHtml(title);
+  return `<span class="paperKind">${escapeHtml(match[1])}</span> ${escapeHtml(match[2])}`;
+}
+
 function itemInTag(item, tag) {
   if (tag.all) return true;
   if (tag.poster) return item.type === "poster";
@@ -665,7 +676,7 @@ function renderPaperRow(item) {
   const size = item.downloaded ? ` <span class="fileSize">· ${formatBytes(item.size_bytes)}</span>` : "";
   return `<tr>
     <td class="id">${escapeHtml(item.paper_id)}</td>
-    <td>${escapeHtml(item.title)}${size}</td>
+    <td>${formatTitle(item.title)}${size}</td>
     <td class="status">${status}</td>
     <td class="pdf">${pdf}</td>
   </tr>`;
