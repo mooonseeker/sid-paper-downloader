@@ -513,7 +513,7 @@ function escapeHtml(value) {
 }
 
 function formatTitle(title) {
-  const match = String(title).match(/^(Invited Paper:|Distinguished Paper:)\s*(.*)$/);
+  const match = String(title).match(/^(Invited Paper:|Distinguished Paper:|Late-News Paper:|Late-News Poster:|Panel:)\s*(.*)$/);
   if (!match) return escapeHtml(title);
   return `<span class="paperKind">${escapeHtml(match[1])}</span> ${escapeHtml(match[2])}`;
 }
